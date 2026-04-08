@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AROYFILM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:   #000;
+      --fg:   #fff;
+      --dim:  rgba(255,255,255,0.4);
+      --line: rgba(255,255,255,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 2.5vw;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--fg); }
+
+    /* ── HERO ── */
+    #hero {
+      height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+
+    /* mørk overlay over video */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+
+    .hero-explore {
+      position: relative;
+      z-index: 1;
+      font-size: 0.9rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .hero-explore {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 800;
+    }
+
+    .hero-explore:hover { color: var(--fg); }
+
+    .hero-arrow {
+      width: 18px;
+      height: 28px;
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+
+    /* ── VIDEO MODAL ── */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.open { display: flex; }
+
+    .modal-inner {
+      position: relative;
+      width: 90vw;
+      max-width: 1100px;
+    }
+
+    .modal-inner::after {
+      content: '';
+      display: block;
+      padding-bottom: 56.25%;
+    }
+
+    .modal-inner iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .modal-close:hover { opacity: 1; }
+
+    /* ── PROJECTS ── */
+    #projects {
+      padding: 0 2.5vw 5rem;
+    }
+
+    /* Row layout: mix of full, 2-col, 3-col */
+    .row {
+      display: grid;
+      gap: 2px;
+      margin-top: 2px;
+    }
+
+    .row-full   { grid-template-columns: 1fr; }
+    .row-2      { grid-template-columns: 2fr 1fr; }
+    .row-2-rev  { grid-template-columns: 1fr 2fr; }
+    .row-3      { grid-template-columns: 1fr 1fr 1fr; }
+    .row-half   { grid-template-columns: 1fr 1fr; }
+
+    .proj {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      cursor: pointer;
+    }
+
+    .proj-thumb {
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+
+    /* aspect ratios */
+    .proj-thumb::after              { content: ''; display: block; padding-bottom: 62%; }
+    .proj.tall .proj-thumb::after   { padding-bottom: 100%; }
+    .proj.wide .proj-thumb::after   { padding-bottom: 45%; }
+    .proj.vertical .proj-thumb::after { padding-bottom: 177.78%; } /* 9:16 */
+
+    .proj-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.7s cubic-bezier(0.23,1,0.32,1);
+    }
+
+    .proj:hover .proj-bg { transform: scale(1.04); }
+
+    .proj-info {
+      padding: 0.8rem 0 1.6rem;
+    }
+
+    .proj-cat {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 0.3rem;
+    }
+
+    .proj-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── BRANDS ── */
+    #brands {
+      background: #000;
+      padding: 6rem 6vw;
+      text-align: center;
+    }
+
+    .brands-label {
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 3.5rem;
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3.5rem 2rem;
+      background: none;
+      border: none;
+    }
+
+    .logo-slot {
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      min-height: 60px;
+    }
+
+    .logo-slot img {
+      max-width: 130px;
+      max-height: 45px;
+      width: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.55;
+      transition: opacity 0.2s;
+    }
+
+    .logo-slot:hover img { opacity: 0.85; }
+
+    .logo-slot span {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+      font-weight: 500;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: #000;
+      color: #fff;
+      padding: 8rem 6vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10vw;
+      align-items: center;
+    }
+
+    .c-left h2 {
+      font-size: clamp(2.5rem, 5vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .f {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .f label {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--fg);
+      font-weight: 400;
+    }
+
+    .f input, .f textarea, .f select {
+      width: 100%;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--fg);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      outline: none;
+      appearance: none;
+      padding: 0.85rem 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .f input:focus, .f textarea:focus, .f select:focus {
+      border-color: rgba(255,255,255,0.7);
+    }
+
+    .f input::placeholder, .f textarea::placeholder { color: #444; }
+    .f select option { background: #000; color: #fff; }
+    .f textarea { resize: none; min-height: 110px; }
+
+    .f-btn {
+      margin-top: 0.5rem;
+      padding: 1rem 2rem;
+      background: #fff;
+      color: #000;
+      border: none;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      width: fit-content;
+      transition: opacity 0.2s;
+    }
+
+    .f-btn:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0a0a;
+      padding: 3.5rem 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .footer-cols {
+      display: flex;
+      gap: 5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-col-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg);
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-col p:not(.footer-col-title),
+    .footer-col a {
+      font-size: 0.82rem;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      line-height: 1.6;
+    }
+
+    .footer-col a:hover { color: var(--fg); }
+
+    /* ── PLAY ICON ── */
+    .play-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.6);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .proj:hover .play-icon { opacity: 1; }
+
+    /* ── FADE ── */
+    .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade.in { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 201;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--fg);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 200;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--fg);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover { color: var(--dim); }
+
+    @media (max-width: 680px) {
+      .row-2, .row-2-rev, .row-3, .row-half { grid-template-columns: 1fr; }
+      .proj.tall .proj-thumb::after { padding-bottom: 62%; }
+      #contact { grid-template-columns: 1fr; gap: 3rem; }
+      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">AROYFILM</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Prosjekter</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#projects" onclick="toggleMobileMenu()">Prosjekter</a>
+    <a href="#contact" onclick="toggleMobileMenu()">Kontakt</a>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal" id="videoModal" onclick="closeModal(event)">
+    <div class="modal-inner">
+      <button class="modal-close" onclick="closeModal()">Lukk ✕</button>
+      <iframe id="modalFrame" src="" allowfullscreen allow="autoplay"></iframe>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <!--
+      HERO VIDEO:
+      Legg inn di eiga videofil nedanfor.
+      Døme: <source src="hero.mp4" type="video/mp4" />
+    -->
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="hero.mp4" type="video/mp4" />
+      <!-- Fila "hero.mp4" må liggje i same mappe som index.html -->
+    </video>
+    <a href="#projects" class="hero-explore">
+      UTFORSK
+      <svg class="hero-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="12" y1="3" x2="12" y2="21"/>
+        <polyline points="6 15 12 21 18 15"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+
+    <!--
+      PROSJEKT: Legg inn YouTube-ID i data-video.
+      Finn ID-en i YouTube-URLen: youtube.com/watch?v=XXXXX
+      Bytt "XXXXX" med din ID.
+      For thumbnail: legg til style="background-image:url('bilde.jpg');background-size:cover"
+    -->
+
+    <div class="row row-2">
+      <div class="proj wide fade" onclick="openModal('XXXXX')">
+        <div class="proj-thumb">
+          <div class="proj-bg" style="background:linear-gradient(150deg,#141414,#1c1300);"></div>
+          <div class="play-icon">▶</div>
+        </div>
+        <div class="proj-info">
+          <p class="proj-cat">Reklamefilm</p>
+          <p class="proj-name">Luksus Eiendom</p>
+        </div>
+      </div>
+      <div class="proj tall fade" onclick="openModal('XXXXX')">
+        <div class="proj-thumb">
+          <div class="proj-bg" style="background:linear-gradient(150deg,#0f0f0f,#160b00);"></div>
+          <div class="play-icon">▶</div>
+        </div>
+        <div class="proj-info">
+          <p class="proj-cat">Sosiale medier</p>
+          <p class="proj-name">Reel-serie</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-3">
+      <div class="proj fade" onclick="openModal('XXXXX')">
+        <div class="proj-thumb">
+          <div class="proj-bg" style="background:linear-gradient(150deg,#0c0c0c,#0e0c1a);"></div>
+          <div class="play-icon">▶</div>
+        </div>
+        <div class="proj-info">
+          <p class="proj-cat">Eiendom</p>
+          <p class="proj-name">Bustadfilm — Frogner</p>
+        </div>
+      </div>
+      <div class="proj fade" onclick="openModal('XXXXX')">
+        <div class="proj-thumb">
+          <div class="proj-bg" style="background:linear-gradient(150deg,#111,#1a0e00);"></div>
+          <div class="play-icon">▶</div>
+        </div>
+        <div class="proj-info">
+          <p class="proj-cat">Brand</p>
+          <p class="proj-name">Restaurant — Lansering</p>
+        </div>
+      </div>
+      <div class="proj fade" onclick="openModal('XXXXX')">
+        <div class="proj-thumb">
+          <div class="proj-bg" style="background:linear-gradient(150deg,#0c0c0c,#0d1116);"></div>
+          <div class="play-icon">▶</div>
+        </div>
+        <div class="proj-info">
+          <p class="proj-cat">Kampanje</p>
+          <p class="proj-name">Lokal bedrift</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-2-rev">
+      <div class="proj tall fade" onclick="openModal('XXXXX')">
+        <div class="proj-thumb">
+          <div class="proj-bg" style="background:linear-gradient(150deg,#0e0e0e,#180a00);"></div>
+          <div class="play-icon">▶</div>
+        </div>
+        <div class="proj-info">
+          <p class="proj-cat">TikTok</p>
+          <p class="proj-name">Merkevare-serie</p>
+        </div>
+      </div>
+      <div class="proj fade" onclick="openModal('XXXXX')">
+        <div class="proj-thumb">
+          <div class="proj-bg" style="background:linear-gradient(150deg,#0a0a0a,#12100a);"></div>
+          <div class="play-icon">▶</div>
+        </div>
+        <div class="proj-info">
+          <p class="proj-cat">Eiendom</p>
+          <p class="proj-name">Hytte — Drone & Livsstil</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- BRANDS -->
+  <section id="brands" class="fade">
+    <p class="brands-label">Brands vi har jobba med</p>
+    <div class="logo-grid">
+      <!-- Erstatt <span> med <img src="logo.png" alt="Brandnamn" /> -->
+      <div class="logo-slot"><span>Brand 1</span></div>
+      <div class="logo-slot"><span>Brand 2</span></div>
+      <div class="logo-slot"><span>Brand 3</span></div>
+      <div class="logo-slot"><span>Brand 4</span></div>
+      <div class="logo-slot"><span>Brand 5</span></div>
+      <div class="logo-slot"><span>Brand 6</span></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="c-left fade">
+      <h2>Kontakt oss</h2>
+    </div>
+    <div class="fade">
+      <form onsubmit="handleSubmit(event)">
+        <div class="f-row">
+          <div class="f">
+            <label>Fornavn</label>
+            <input type="text" placeholder="" required />
+          </div>
+          <div class="f">
+            <label>Etternavn</label>
+            <input type="text" placeholder="" required />
+          </div>
+        </div>
+        <div class="f">
+          <label>Mail</label>
+          <input type="email" placeholder="" required />
+        </div>
+        <div class="f">
+          <label>Melding</label>
+          <textarea placeholder=""></textarea>
+        </div>
+        <button type="submit" class="f-btn">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">AROYFILM</a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <p class="footer-col-title">Adresse</p>
+        <p>Oslo, Noreg</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Kontakt</p>
+        <a href="mailto:jacob@aroyfilm.no">jacob@aroyfilm.no</a>
+        <a href="tel:+4700000000">+47 900 40 546</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Følg oss</p>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      document.getElementById('hamburger').classList.toggle('open');
+      document.getElementById('mobileMenu').classList.toggle('open');
+      document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+    }
+
+    function openModal(youtubeId) {
+      document.getElementById('modalFrame').src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+      document.getElementById('videoModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e && e.target !== document.getElementById('videoModal') && !e.target.classList.contains('modal-close')) return;
+      document.getElementById('modalFrame').src = '';
+      document.getElementById('videoModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal({ target: document.getElementById('videoModal') }); });
+
+    const obs = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.f-btn');
+      btn.textContent = 'Sendt ✓';
+      btn.style.opacity = '0.5';
+      btn.disabled = true;
+      setTimeout(() => { btn.textContent = 'Send melding →'; btn.style.opacity = ''; btn.disabled = false; e.target.reset(); }, 5000);
+    }
+  </script>
+</body>
+</html>
