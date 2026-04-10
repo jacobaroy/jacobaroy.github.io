@@ -32,6 +32,12 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.6rem 2.5vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: transparent;
     }
 
     .logo {
@@ -88,7 +94,10 @@
     }
 
     .hero-explore {
-      position: relative;
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 1;
       font-size: 0.9rem;
       letter-spacing: 0.35em;
@@ -96,9 +105,6 @@
       color: var(--dim);
       text-decoration: none;
       transition: color 0.2s;
-    }
-
-    .hero-explore {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -683,7 +689,7 @@
     <div class="footer-cols">
       <div class="footer-col">
         <p class="footer-col-title">Adresse</p>
-        <p>Oslo, Noreg</p>
+        <p>Oslo, Norge</p>
       </div>
       <div class="footer-col">
         <p class="footer-col-title">Kontakt</p>
