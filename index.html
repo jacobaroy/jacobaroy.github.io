@@ -705,6 +705,9 @@
   </footer>
 
   <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
     function toggleMobileMenu() {
       document.getElementById('hamburger').classList.toggle('open');
       document.getElementById('mobileMenu').classList.toggle('open');
