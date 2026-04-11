@@ -219,10 +219,11 @@
     .proj-bg {
       position: absolute;
       inset: 0;
-      transition: transform 0.7s cubic-bezier(0.23,1,0.32,1);
+      transition: transform 0.7s cubic-bezier(0.23,1,0.32,1), filter 0.3s ease;
+      filter: brightness(0.5);
     }
 
-    .proj:hover .proj-bg { transform: scale(1.04); }
+    .proj:hover .proj-bg { transform: scale(1.04); filter: brightness(1); }
 
     .proj-info {
       padding: 0.8rem 0 1.6rem;
@@ -430,8 +431,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.6);
+      font-size: 3rem;
+      color: rgba(255,255,255,0.9);
       opacity: 0;
       transition: opacity 0.2s;
     }
