@@ -242,81 +242,52 @@
     #brands {
       position: relative;
       overflow: hidden;
-      aspect-ratio: 16/9;
       text-align: center;
     }
 
-    @media (max-width: 700px) {
-      #brands { aspect-ratio: 4/3; }
+    .brands-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
     }
 
     .brands-video {
-      position: absolute;
-      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .brands-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-    }
-
     .brands-content {
-      position: absolute;
-      inset: 0;
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 6% 8%;
-      z-index: 1;
-    }
-
-    .brands-label {
-      font-size: clamp(1.4rem, 4vw, 4.5rem);
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      color: #fff;
-      font-weight: 700;
-      margin-bottom: 5%;
-      line-height: 1;
-      width: 100%;
+      padding: 7rem 6vw;
       text-align: center;
     }
 
-    .logo-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 3% 4%;
-      width: 100%;
-    }
-
-    .logo-slot {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-slot img {
-      height: clamp(20px, 3vw, 44px);
-      width: auto;
-      max-width: clamp(80px, 12vw, 150px);
-      object-fit: contain;
-      opacity: 0.95;
-      filter: brightness(0) invert(1);
-    }
-
-    .logo-slot span {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
+    .brands-label {
+      font-size: clamp(2rem, 5vw, 5rem);
+      letter-spacing: -0.01em;
       text-transform: uppercase;
-      color: #aaa;
-      font-weight: 500;
+      color: #E0E0DB;
+      font-weight: 700;
+      margin-bottom: 4rem;
+      line-height: 1;
+    }
+
+    .logo-image-wrapper {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .logo-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     /* ── CONTACT ── */
@@ -660,19 +631,16 @@
 
   <!-- BRANDS -->
   <section id="brands" class="fade">
-    <video class="brands-video" autoplay muted loop playsinline webkit-playsinline>
-      <source src="brand.mp4" type="video/mp4" />
-    </video>
-    <div class="brands-overlay"></div>
+    <div class="brands-bg">
+      <video class="brands-video" autoplay muted loop playsinline webkit-playsinline>
+        <source src="brand.mp4" type="video/mp4" />
+      </video>
+    </div>
     <div class="brands-content">
       <p class="brands-label">Brands vi har jobba med</p>
-      <div class="logo-grid">
-        <div class="logo-slot"><img src="logos/LOGO TEST JOSVANGER.webp" alt="Josvanger" /></div>
-        <div class="logo-slot"><img src="logos/REBULL LOGO TEST.jpg" alt="Red Bull" /></div>
-        <div class="logo-slot"><img src="logos/antonsport_Logo TEST.png" alt="Antonsport" /></div>
-        <div class="logo-slot"><img src="logos/døds logo test.png" alt="Døds" /></div>
-        <div class="logo-slot"><img src="logos/mtg logo test.webp" alt="MTG" /></div>
-        <div class="logo-slot"><img src="logos/vaskeladden logo.png" alt="Vaskeladden" /></div>
+      <div class="logo-image-wrapper">
+        <!-- Bytt ut logos/logos-combined.png med ditt eige samla logo-bilete (PNG, gjennomsiktig bakgrunn, ~900x500px) -->
+        <img src="logos/logos-combined.png" alt="Brands vi har jobba med" />
       </div>
     </div>
   </section>
