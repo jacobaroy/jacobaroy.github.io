@@ -240,12 +240,11 @@
     #brands {
       position: relative;
       overflow: hidden;
-      aspect-ratio: 4/3;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 4rem 6vw;
+      padding: 6rem 6vw;
       text-align: center;
     }
 
@@ -260,33 +259,34 @@
     .brands-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.55);
     }
 
     .brands-content {
       position: relative;
       z-index: 1;
       width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .brands-label {
-      font-size: clamp(0.7rem, 1.8vw, 1.1rem);
-      letter-spacing: 0.15em;
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      letter-spacing: -0.02em;
       text-transform: uppercase;
       color: #fff;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      opacity: 0.7;
+      font-weight: 900;
+      margin-bottom: 3rem;
+      line-height: 1.05;
     }
 
     .logo-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       align-items: center;
-      gap: 1.5rem 2.5rem;
-      max-width: 600px;
-      margin: 0 auto;
+      justify-items: center;
+      gap: 2.5rem 2rem;
+      width: 100%;
     }
 
     .logo-slot {
@@ -294,19 +294,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem;
-      height: auto;
     }
 
     .logo-slot img {
-      height: 28px;
+      height: 36px;
       width: auto;
-      max-width: 110px;
+      max-width: 130px;
       object-fit: contain;
-      opacity: 0.85;
+      opacity: 0.9;
       filter: brightness(0) invert(1);
     }
 
+    @media (max-width: 600px) {
+      .logo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem 1.5rem;
+      }
+      .logo-slot img {
+        height: 26px;
+        max-width: 90px;
+      }
+    }
 
     .logo-slot span {
       font-size: 0.62rem;
