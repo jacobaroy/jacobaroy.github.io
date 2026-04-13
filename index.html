@@ -404,7 +404,7 @@
       font-weight: 400;
       outline: none;
       appearance: none;
-      padding: 1rem 1rem;
+      padding: 1.2rem 1rem;
       transition: border-color 0.2s, background 0.2s;
       border-radius: 0;
     }
@@ -421,28 +421,27 @@
 
     .f input::placeholder, .f textarea::placeholder { color: #333; }
     .f select option { background: #000; color: #fff; }
-    .f textarea { resize: none; min-height: 160px; }
+    .f textarea { resize: none; min-height: 200px; }
 
     .f-btn {
       margin-top: 0.5rem;
-      padding: 0.9rem 2.5rem;
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 50px;
+      padding: 1rem 2rem;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 0;
       font-family: 'Barlow', sans-serif;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       cursor: pointer;
       width: fit-content;
-      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      transition: background 0.2s, transform 0.15s;
     }
 
     .f-btn:hover {
-      border-color: #fff;
-      color: #fff;
+      background: #e0e0e0;
       transform: translateY(-2px);
     }
 
