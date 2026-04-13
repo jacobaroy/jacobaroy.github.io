@@ -491,8 +491,7 @@
     .footer-col a:hover { color: var(--fg); }
 
     /* ── FADE ── */
-    .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .fade.in { opacity: 1; transform: none; }
+    .fade { opacity: 1; transform: none; }
 
     /* ── MOBILE ── */
     /* ── HAMBURGER ── */
@@ -777,10 +776,6 @@
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal({ target: document.getElementById('videoModal') }); });
 
-    const obs = new IntersectionObserver(es => {
-      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-    }, { threshold: 0.06 });
-    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
     function handleSubmit(e) {
       e.preventDefault();
