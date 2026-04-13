@@ -242,17 +242,26 @@
     #brands {
       position: relative;
       overflow: hidden;
+      aspect-ratio: 16/9;
       text-align: center;
     }
 
+    @media (max-width: 700px) {
+      #brands { aspect-ratio: 4/3; }
+    }
+
     .brands-video {
-      display: block;
+      position: absolute;
+      inset: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
     }
 
     .brands-overlay {
-      display: none;
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
     }
 
     .brands-content {
@@ -279,28 +288,27 @@
     }
 
     .logo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
-      justify-items: center;
-      gap: 4% 3%;
+      gap: 3% 4%;
       width: 100%;
     }
 
     .logo-slot {
-      background: none;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .logo-slot img {
-      height: clamp(18px, 3vw, 42px);
+      height: clamp(20px, 3vw, 44px);
       width: auto;
-      max-width: clamp(70px, 14vw, 160px);
+      max-width: clamp(80px, 12vw, 150px);
       object-fit: contain;
-      opacity: 0.9;
-      filter: none;
+      opacity: 0.95;
+      filter: brightness(0) invert(1);
     }
 
     .logo-slot span {
