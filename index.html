@@ -247,6 +247,7 @@
       align-items: center;
       justify-content: center;
       padding: 6rem 6vw;
+      min-height: 50vh;
       text-align: center;
     }
 
@@ -284,7 +285,7 @@
 
     .logo-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
       align-items: center;
       justify-items: center;
       gap: 2.5rem 2rem;
@@ -299,23 +300,12 @@
     }
 
     .logo-slot img {
-      height: 36px;
+      height: 32px;
       width: auto;
-      max-width: 130px;
+      max-width: 120px;
       object-fit: contain;
       opacity: 0.9;
       filter: brightness(0) invert(1);
-    }
-
-    @media (max-width: 600px) {
-      .logo-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem 1.5rem;
-      }
-      .logo-slot img {
-        height: 26px;
-        max-width: 90px;
-      }
     }
 
     .logo-slot span {
