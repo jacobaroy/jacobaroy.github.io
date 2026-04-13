@@ -364,11 +364,17 @@
       outline: none;
       appearance: none;
       padding: 0.85rem 1rem;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .f input:hover, .f textarea:hover, .f select:hover {
+      border-color: rgba(255,255,255,0.5);
+      background: #0d0d0d;
     }
 
     .f input:focus, .f textarea:focus, .f select:focus {
-      border-color: rgba(255,255,255,0.7);
+      border-color: rgba(255,255,255,0.85);
+      background: #111;
     }
 
     .f input::placeholder, .f textarea::placeholder { color: #444; }
@@ -388,10 +394,17 @@
       text-transform: uppercase;
       cursor: pointer;
       width: fit-content;
-      transition: opacity 0.2s;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
     }
 
-    .f-btn:hover { opacity: 0.85; }
+    .f-btn:hover {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+    }
+
+    .f-btn:active {
+      transform: translateY(0);
+    }
 
     /* ── FOOTER ── */
     footer {
