@@ -729,7 +729,7 @@
           <label>Melding</label>
           <textarea placeholder=""></textarea>
         </div>
-        <button type="submit" class="f-btn">SEND!</button>
+        <button type="submit" class="f-btn" onmouseenter="this.textContent='SEND!'" onmouseleave="this.textContent='SEND'">SEND</button>
       </form>
     </div>
   </section>
@@ -797,7 +797,7 @@
       btn.textContent = 'Sendt ✓';
       btn.style.opacity = '0.5';
       btn.disabled = true;
-      setTimeout(() => { btn.textContent = 'SEND!'; btn.style.opacity = ''; btn.disabled = false; e.target.reset(); }, 5000);
+      setTimeout(() => { btn.textContent = 'SEND'; btn.style.opacity = ''; btn.disabled = false; e.target.reset(); }, 5000);
     }
   </script>
 </body>
