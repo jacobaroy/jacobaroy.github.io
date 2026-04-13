@@ -238,9 +238,35 @@
 
     /* ── BRANDS ── */
     #brands {
-      background: #1a1a1a;
-      padding: 6rem 6vw;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 6vw;
       text-align: center;
+    }
+
+    .brands-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brands-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+    }
+
+    .brands-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
     }
 
     .brands-label {
@@ -630,14 +656,20 @@
 
   <!-- BRANDS -->
   <section id="brands" class="fade">
-    <p class="brands-label">Brands vi har jobba med</p>
-    <div class="logo-grid">
-      <div class="logo-slot"><img src="logos/LOGO TEST JOSVANGER.webp" alt="Josvanger" /></div>
-      <div class="logo-slot"><img src="logos/REBULL LOGO TEST.jpg" alt="Red Bull" /></div>
-      <div class="logo-slot"><img src="logos/antonsport_Logo TEST.png" alt="Antonsport" /></div>
-      <div class="logo-slot"><img src="logos/døds logo test.png" alt="Døds" /></div>
-      <div class="logo-slot"><img src="logos/mtg logo test.webp" alt="MTG" /></div>
-      <div class="logo-slot"><img src="logos/vaskeladden logo.png" alt="Vaskeladden" /></div>
+    <video class="brands-video" autoplay muted loop playsinline webkit-playsinline>
+      <source src="hero.mp4" type="video/mp4" />
+    </video>
+    <div class="brands-overlay"></div>
+    <div class="brands-content">
+      <p class="brands-label">Brands vi har jobba med</p>
+      <div class="logo-grid">
+        <div class="logo-slot"><img src="logos/LOGO TEST JOSVANGER.webp" alt="Josvanger" /></div>
+        <div class="logo-slot"><img src="logos/REBULL LOGO TEST.jpg" alt="Red Bull" /></div>
+        <div class="logo-slot"><img src="logos/antonsport_Logo TEST.png" alt="Antonsport" /></div>
+        <div class="logo-slot"><img src="logos/døds logo test.png" alt="Døds" /></div>
+        <div class="logo-slot"><img src="logos/mtg logo test.webp" alt="MTG" /></div>
+        <div class="logo-slot"><img src="logos/vaskeladden logo.png" alt="Vaskeladden" /></div>
+      </div>
     </div>
   </section>
 
