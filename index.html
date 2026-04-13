@@ -394,35 +394,32 @@
       text-transform: uppercase;
     }
 
-    .f {
-      position: relative;
-    }
-
     .f input, .f textarea, .f select {
       width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(255,255,255,0.25);
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.2);
       color: var(--fg);
       font-family: 'Barlow', sans-serif;
       font-size: 0.95rem;
       font-weight: 400;
       outline: none;
       appearance: none;
-      padding: 1rem 0;
-      transition: border-color 0.3s;
+      padding: 1.2rem 1rem;
+      transition: border-color 0.2s, background 0.2s;
       border-radius: 0;
     }
 
-    .f input:hover, .f textarea:hover {
+    .f input:hover, .f textarea:hover, .f select:hover {
       border-color: rgba(255,255,255,0.5);
+      background: #0d0d0d;
     }
 
-    .f input:focus, .f textarea:focus {
-      border-color: #fff;
+    .f input:focus, .f textarea:focus, .f select:focus {
+      border-color: rgba(255,255,255,0.85);
+      background: #111;
     }
 
-    .f input::placeholder, .f textarea::placeholder { color: #444; }
+    .f input::placeholder, .f textarea::placeholder { color: #333; }
     .f select option { background: #000; color: #fff; }
     .f textarea { resize: none; min-height: 200px; }
 
