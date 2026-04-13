@@ -238,7 +238,7 @@
 
     /* ── BRANDS ── */
     #brands {
-      background: #000;
+      background: #1a1a1a;
       padding: 6rem 6vw;
       text-align: center;
     }
@@ -253,11 +253,13 @@
     }
 
     .logo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3.5rem 2rem;
-      background: none;
-      border: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .logo-slot {
@@ -275,6 +277,7 @@
       max-width: 160px;
       object-fit: contain;
       opacity: 1;
+      filter: brightness(0) invert(1);
     }
 
 
