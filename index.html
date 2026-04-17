@@ -366,19 +366,22 @@
       margin: 0;
     }
 
-    .logo-image-wrapper {
+    .logo-row {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      width: 76.5%;
-      max-width: 812px;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      width: 90%;
+      max-width: 1100px;
     }
 
-    .logo-image-wrapper img {
-      width: 100%;
-      height: auto;
+    .logo-row img {
+      height: clamp(36px, 4.5vw, 64px);
+      width: auto;
       object-fit: contain;
       display: block;
+      opacity: 0.95;
     }
 
     @media (max-width: 767px) {
@@ -391,8 +394,11 @@
         font-size: 24px;
         letter-spacing: 1.5px;
       }
-      .logo-image-wrapper {
-        width: 90%;
+      .logo-row {
+        gap: 1.5rem 2.5rem;
+      }
+      .logo-row img {
+        height: 32px;
       }
     }
 
@@ -735,9 +741,11 @@
     </div>
     <div class="brands-content">
       <p class="brands-label">Brands vi har jobba med</p>
-      <div class="logo-image-wrapper">
-        <!-- Bytt ut logos/logos-combined.png med ditt eige samla logo-bilete (PNG, gjennomsiktig bakgrunn, ~900x500px) -->
-        <img src="logos/logos-combined.png" alt="Brands vi har jobba med" />
+      <div class="logo-row">
+        <img src="logos/josvanger%20kvit%20logo.png" alt="Gaute Josvanger" />
+        <img src="logos/autohuse%20kvit%20logo.png" alt="Autohuset Sogn" />
+        <img src="logos/mtg%20music%20kvit%20logo.png" alt="MTG Music" />
+        <img src="logos/Meklarhuset%20White%20Logo.webp" alt="Meklarhuset" />
       </div>
     </div>
   </section>
