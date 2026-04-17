@@ -371,14 +371,24 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: clamp(2rem, 5vw, 4.5rem);
+      gap: clamp(1.5rem, 3vw, 3rem);
       width: 90%;
-      max-width: 1100px;
+      max-width: 1200px;
     }
 
-    .logo-row img {
-      height: clamp(36px, 4.5vw, 64px);
+    .logo-box {
+      width: clamp(120px, 14vw, 180px);
+      height: clamp(60px, 7vw, 90px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-box img {
+      max-width: 100%;
+      max-height: 100%;
       width: auto;
+      height: auto;
       object-fit: contain;
       display: block;
       opacity: 0.95;
@@ -395,10 +405,11 @@
         letter-spacing: 1.5px;
       }
       .logo-row {
-        gap: 1.5rem 2.5rem;
+        gap: 1rem 1.5rem;
       }
-      .logo-row img {
-        height: 32px;
+      .logo-box {
+        width: 100px;
+        height: 52px;
       }
     }
 
@@ -742,12 +753,12 @@
     <div class="brands-content">
       <p class="brands-label">Brands vi har jobba med</p>
       <div class="logo-row">
-        <img src="logos/josvanger%20kvit%20logo.png" alt="Gaute Josvanger" />
-        <img src="logos/autohuse%20kvit%20logo.png" alt="Autohuset Sogn" />
-        <img src="logos/mtg%20music%20kvit%20logo.png" alt="MTG Music" />
-        <img src="logos/Meklarhuset%20White%20Logo.webp" alt="Meklarhuset" />
-        <img src="logos/vaskeladden%20kvit%20logo.png" alt="Vaskeladden" />
-        <img src="logos/d%C3%B8ds%20logo%20kvit.png" alt="Døds" />
+        <div class="logo-box"><img src="logos/josvanger%20kvit%20logo.png" alt="Gaute Josvanger" /></div>
+        <div class="logo-box"><img src="logos/autohuse%20kvit%20logo.png" alt="Autohuset Sogn" /></div>
+        <div class="logo-box"><img src="logos/mtg%20music%20kvit%20logo.png" alt="MTG Music" /></div>
+        <div class="logo-box"><img src="logos/Meklarhuset%20White%20Logo.webp" alt="Meklarhuset" /></div>
+        <div class="logo-box"><img src="logos/vaskeladden%20kvit%20logo.png" alt="Vaskeladden" /></div>
+        <div class="logo-box"><img src="logos/d%C3%B8ds%20logo%20kvit.png" alt="Døds" /></div>
       </div>
     </div>
   </section>
