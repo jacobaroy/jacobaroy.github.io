@@ -97,6 +97,47 @@
     }
 
 
+    .hero-cta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8rem;
+      padding: 0 4vw;
+      text-align: center;
+    }
+
+    .hero-headline {
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: #fff;
+      margin: 0;
+      text-transform: none;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 1rem 2.2rem;
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .hero-btn:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
     .hero-explore {
       position: absolute;
       bottom: 20%;
@@ -606,6 +647,10 @@
       <source src="hero.mp4" type="video/mp4" />
       <!-- Fila "hero.mp4" må liggje i same mappe som index.html -->
     </video>
+    <div class="hero-cta">
+      <h1 class="hero-headline">Vi fortel historia di på film.</h1>
+      <a href="#projects" class="hero-btn">Sjå arbeidet</a>
+    </div>
   </section>
 
   <!-- PROJECTS -->
