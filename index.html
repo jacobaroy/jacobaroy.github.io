@@ -704,23 +704,24 @@
     </div>
     <div class="fade">
       <form onsubmit="handleSubmit(event)">
+        <input type="hidden" name="_replyto" value="" />
         <div class="f-row">
           <div class="f">
             <label>Fornavn</label>
-            <input type="text" placeholder="" required />
+            <input type="text" name="fornavn" placeholder="" required />
           </div>
           <div class="f">
             <label>Etternavn</label>
-            <input type="text" placeholder="" required />
+            <input type="text" name="etternavn" placeholder="" required />
           </div>
         </div>
         <div class="f">
           <label>Mail</label>
-          <input type="email" placeholder="" required />
+          <input type="email" name="email" placeholder="" required />
         </div>
         <div class="f">
           <label>Melding</label>
-          <textarea placeholder=""></textarea>
+          <textarea name="melding" placeholder=""></textarea>
         </div>
         <button type="submit" class="f-btn">SEND</button>
       </form>
@@ -784,13 +785,31 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal({ target: document.getElementById('videoModal') }); });
 
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.f-btn');
-      btn.textContent = 'Sendt ✓';
-      btn.style.opacity = '0.5';
+      const form = e.target;
+      const btn = form.querySelector('.f-btn');
+
+      // set _replyto to the email field value
+      form.querySelector('[name="_replyto"]').value = form.querySelector('[name="email"]').value;
+
+      btn.textContent = 'Sender…';
       btn.disabled = true;
-      setTimeout(() => { btn.textContent = 'SEND'; btn.style.opacity = ''; btn.disabled = false; e.target.reset(); }, 5000);
+
+      const data = new FormData(form);
+      const res = await fetch('https://formspree.io/f/meevggkb', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        btn.textContent = 'Sendt ✓';
+        setTimeout(() => { btn.textContent = 'SEND'; btn.disabled = false; form.reset(); }, 5000);
+      } else {
+        btn.textContent = 'Prøv igjen';
+        btn.disabled = false;
+      }
     }
   </script>
 </body>
