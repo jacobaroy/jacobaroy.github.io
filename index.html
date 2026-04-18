@@ -23,6 +23,9 @@
   <meta name="twitter:image" content="https://aroyfilm.no/assets/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js" defer></script>
+  <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js" defer></script>
+  <script src="https://unpkg.com/isotope-packery@2.0.1/packery-mode.pkgd.min.js" defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -233,29 +236,45 @@
     /* ── PROJECTS ── */
     #projects {
       background: #000;
-      padding: 100px 0;
+      padding: 0;
     }
 
-    .grid-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: clamp(130px, 18vw, 260px);
-      gap: 0;
-      max-width: 1220px;
+    #grid-container {
+      width: 100%;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
-    .grid-entry.count-1 { grid-column: span 2; grid-row: span 2; }
-    .grid-entry.count-2 { grid-column: span 1; grid-row: span 1; }
-    .grid-entry.count-3 { grid-column: span 1; grid-row: span 1; }
-    .grid-entry.count-4 { grid-column: span 2; grid-row: span 2; }
-    .grid-entry.count-5 { grid-column: span 1; grid-row: span 2; }
-    .grid-entry.count-6 { grid-column: span 1; grid-row: span 2; }
+    #grid-container::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
 
     .grid-entry {
+      float: left;
       position: relative;
       overflow: hidden;
       cursor: pointer;
+    }
+
+    .columns.large-6 { width: 50%; }
+    .columns.large-3 { width: 25%; }
+
+    /* Default 3:2 aspect */
+    .grid-entry::before {
+      content: "";
+      display: block;
+      padding-top: 66%;
+    }
+
+    /* Vertikal fliser (for Shorts) — dobbel høgde */
+    .grid-entry.tall::before { padding-top: 132%; }
+
+    .grid-entry .media {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
     }
 
     .grid-entry img {
@@ -263,7 +282,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s ease;
     }
 
     .grid-entry:hover img { transform: scale(1.05); }
@@ -300,15 +319,15 @@
       font-weight: 400;
     }
 
+    @media (max-width: 1024px) {
+      .columns.large-6,
+      .columns.large-3 { width: 50%; }
+    }
 
-    @media (max-width: 768px) {
-      #projects { padding: 0; }
-      .grid-row {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: clamp(140px, 30vw, 220px);
-      }
-      .grid-entry.count-1, .grid-entry.count-4 { grid-column: span 2; grid-row: span 1; }
-      .grid-entry.count-5, .grid-entry.count-6 { grid-row: span 1; }
+    @media (max-width: 640px) {
+      .columns.large-6,
+      .columns.large-3 { width: 100%; }
+      .grid-entry.tall::before { padding-top: 66%; }
     }
 
     @media (max-width: 480px) {
@@ -683,11 +702,11 @@
 
   <!-- PROJECTS -->
   <section id="projects">
-    <div class="grid-row">
+    <div id="grid-container" class="row">
 
-      <!-- KORT 1 – stor venstre (2 kol, 2 rad) -->
-      <div class="grid-entry count-1 fade" onclick="openModal('0p8SGdsE4ZM')">
-        <img src="assets/thumbnails/josvanger.jpg" alt="Gaute Josvanger" />
+      <!-- Stor -->
+      <div class="columns grid-entry large-6 fade" onclick="openModal('0p8SGdsE4ZM')">
+        <div class="media"><img src="assets/thumbnails/josvanger.jpg" alt="Gaute Josvanger" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Gaute Josvanger</h3>
@@ -696,9 +715,9 @@
         </div>
       </div>
 
-      <!-- KORT 2 – liten øvre høgre -->
-      <div class="grid-entry count-2 fade" onclick="openModal('o18ZUwoCXYk')">
-        <img src="https://img.youtube.com/vi/o18ZUwoCXYk/maxresdefault.jpg" alt="JLAS x Fløyen" />
+      <!-- Liten -->
+      <div class="columns grid-entry large-3 fade" onclick="openModal('o18ZUwoCXYk')">
+        <div class="media"><img src="https://img.youtube.com/vi/o18ZUwoCXYk/maxresdefault.jpg" alt="JLAS x Fløyen" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">JLAS x Fløyen</h3>
@@ -707,9 +726,9 @@
         </div>
       </div>
 
-      <!-- KORT 3 – liten øvre høgre -->
-      <div class="grid-entry count-3 fade" onclick="openModal('PY4YMhwE-Xc')">
-        <img src="assets/thumbnails/autohuse.jpg" alt="Autohuset Sogn" />
+      <!-- Liten -->
+      <div class="columns grid-entry large-3 fade" onclick="openModal('PY4YMhwE-Xc')">
+        <div class="media"><img src="assets/thumbnails/autohuse.jpg" alt="Autohuset Sogn" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Autohuset Sogn</h3>
@@ -718,9 +737,9 @@
         </div>
       </div>
 
-      <!-- KORT 4 – stor nedre høgre (2 kol, 2 rad) -->
-      <div class="grid-entry count-4 fade" onclick="openModal('aCUdANF3blg')">
-        <img src="assets/thumbnails/marstein.jpg" alt="Marstein Festival" />
+      <!-- Stor -->
+      <div class="columns grid-entry large-6 fade" onclick="openModal('aCUdANF3blg')">
+        <div class="media"><img src="assets/thumbnails/marstein.jpg" alt="Marstein Festival" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Marstein Festival</h3>
@@ -729,9 +748,9 @@
         </div>
       </div>
 
-      <!-- KORT 5 – medium nedre venstre (1 kol, 2 rad) -->
-      <div class="grid-entry count-5 fade" onclick="openModal('WXX2qQKQCNU')">
-        <img src="assets/thumbnails/vaskeladden.png" alt="Vaskeladden" />
+      <!-- Liten (vertikal) -->
+      <div class="columns grid-entry large-3 tall fade" onclick="openModal('WXX2qQKQCNU')">
+        <div class="media"><img src="assets/thumbnails/vaskeladden.png" alt="Vaskeladden" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Vaskeladden</h3>
@@ -740,9 +759,9 @@
         </div>
       </div>
 
-      <!-- KORT 6 – medium nedre mid-venstre (1 kol, 2 rad) -->
-      <div class="grid-entry count-6 fade" onclick="openModal('dangeCQ9xms')">
-        <img src="assets/thumbnails/gunnkvaale.jpg" alt="Gunn Kvaale" />
+      <!-- Liten -->
+      <div class="columns grid-entry large-3 fade" onclick="openModal('dangeCQ9xms')">
+        <div class="media"><img src="assets/thumbnails/gunnkvaale.jpg" alt="Gunn Kvaale" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Gunn Kvaale</h3>
@@ -861,6 +880,23 @@
     }
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal({ target: document.getElementById('videoModal') }); });
+
+
+    // Isotope + Packery grid init
+    window.addEventListener('load', function() {
+      const grid = document.querySelector('#grid-container');
+      if (!grid || typeof Isotope === 'undefined' || typeof imagesLoaded === 'undefined') return;
+
+      imagesLoaded(grid, function() {
+        const iso = new Isotope(grid, {
+          itemSelector: '.columns',
+          layoutMode: 'packery',
+          percentPosition: true,
+          packery: { gutter: 0 }
+        });
+        window.addEventListener('resize', function() { iso.layout(); });
+      });
+    });
 
 
     async function handleSubmit(e) {
