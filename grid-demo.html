@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="nn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grid demo — Field Productions style</title>
+
+  <!-- Avhengigheiter -->
+  <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
+  <script src="https://unpkg.com/isotope-packery@2.0.1/packery-mode.pkgd.min.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      background: #0b0b0b;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      padding: 2rem 0;
+    }
+
+    .row {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .grid-entry {
+      float: left;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* Desktop størrelser */
+    .columns.large-6 { width: 50%; }
+    .columns.large-3 { width: 25%; }
+
+    /* Firkanta aspect ratio, så Packery får noko å jobbe med */
+    .grid-entry::before {
+      content: "";
+      display: block;
+      padding-top: 66%; /* 3:2 aspect */
+    }
+
+    .grid-entry .media {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .grid-entry img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .grid-entry:hover img {
+      transform: scale(1.05);
+    }
+
+    .grid-entry .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      transition: background 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.4rem 1.6rem;
+    }
+
+    .grid-entry:hover .overlay {
+      background: rgba(0,0,0,0.05);
+    }
+
+    .grid-entry .text {
+      color: #fff;
+    }
+
+    .grid-entry .title {
+      font-size: clamp(14px, 1.5vw, 22px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+
+    .grid-entry .subtitle {
+      font-size: clamp(10px, 0.85vw, 13px);
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .columns.large-6,
+      .columns.large-3 {
+        width: 50%;
+      }
+    }
+
+    /* Mobil */
+    @media (max-width: 640px) {
+      .columns.large-6,
+      .columns.large-3 {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="grid-container" class="row">
+
+    <!-- Stor -->
+    <div class="columns grid-entry large-6">
+      <div class="media"><img src="https://picsum.photos/seed/1/1200/800" alt="" /></div>
+      <div class="overlay">
+        <div class="text">
+          <div class="title">Prosjekt éin</div>
+          <div class="subtitle">Reklamefilm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liten -->
+    <div class="columns grid-entry large-3">
+      <div class="media"><img src="https://picsum.photos/seed/2/800/800" alt="" /></div>
+      <div class="overlay">
+        <div class="text">
+          <div class="title">Prosjekt to</div>
+          <div class="subtitle">Sosiale medier</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liten -->
+    <div class="columns grid-entry large-3">
+      <div class="media"><img src="https://picsum.photos/seed/3/800/800" alt="" /></div>
+      <div class="overlay">
+        <div class="text">
+          <div class="title">Prosjekt tre</div>
+          <div class="subtitle">Aftermovie</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stor -->
+    <div class="columns grid-entry large-6">
+      <div class="media"><img src="https://picsum.photos/seed/4/1200/800" alt="" /></div>
+      <div class="overlay">
+        <div class="text">
+          <div class="title">Prosjekt fire</div>
+          <div class="subtitle">Event</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liten -->
+    <div class="columns grid-entry large-3">
+      <div class="media"><img src="https://picsum.photos/seed/5/800/800" alt="" /></div>
+      <div class="overlay">
+        <div class="text">
+          <div class="title">Prosjekt fem</div>
+          <div class="subtitle">Musikkvideo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liten -->
+    <div class="columns grid-entry large-3">
+      <div class="media"><img src="https://picsum.photos/seed/6/800/800" alt="" /></div>
+      <div class="overlay">
+        <div class="text">
+          <div class="title">Prosjekt seks</div>
+          <div class="subtitle">Dokumentar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liten -->
+    <div class="columns grid-entry large-3">
+      <div class="media"><img src="https://picsum.photos/seed/7/800/800" alt="" /></div>
+      <div class="overlay">
+        <div class="text">
+          <div class="title">Prosjekt sju</div>
+          <div class="subtitle">Bedriftsfilm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liten -->
+    <div class="columns grid-entry large-3">
+      <div class="media"><img src="https://picsum.photos/seed/8/800/800" alt="" /></div>
+      <div class="overlay">
+        <div class="text">
+          <div class="title">Prosjekt åtte</div>
+          <div class="subtitle">Portrett</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const grid = document.querySelector('#grid-container');
+
+    imagesLoaded(grid, function() {
+      new Isotope(grid, {
+        itemSelector: '.columns',
+        layoutMode: 'packery',
+        percentPosition: true,
+        packery: {
+          gutter: 0
+        }
+      });
+    });
+
+    // Re-layout ved window resize
+    window.addEventListener('resize', function() {
+      if (grid.isotope) grid.isotope.layout();
+    });
+  </script>
+
+</body>
+</html>
