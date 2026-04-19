@@ -79,13 +79,19 @@
     }
 
     .nav-links a {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
       text-transform: uppercase;
       color: rgba(255,255,255,0.9);
       text-decoration: none;
       transition: color 0.15s;
       text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 640px) {
+      .nav-links a { font-size: 13px; }
     }
 
     .nav-links a:hover { color: var(--fg); }
