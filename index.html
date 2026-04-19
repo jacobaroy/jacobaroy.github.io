@@ -22,7 +22,8 @@
   <meta name="twitter:description" content="Videoproduksjon og reklamefilm for bedrifter og sosiale medium." />
   <meta name="twitter:image" content="https://aroyfilm.no/assets/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&family=Inter:wght@700;900&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js" defer></script>
   <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js" defer></script>
   <script src="https://unpkg.com/isotope-packery@2.0.1/packery-mode.pkgd.min.js" defer></script>
@@ -121,33 +122,52 @@
     }
 
     .hero-headline {
-      font-size: clamp(2rem, 5vw, 4.5rem);
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      line-height: 1.1;
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.5;
+      text-transform: uppercase;
       color: #fff;
       margin: 0;
-      text-transform: none;
+    }
+
+    .hero-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0;
     }
 
     .hero-btn {
       display: inline-block;
-      padding: 1rem 2.2rem;
-      border: 1px solid rgba(255,255,255,0.7);
+      padding: 0.9rem 2rem;
+      background: #fff;
+      border: none;
       border-radius: 50px;
-      color: #fff;
+      color: #000;
       text-decoration: none;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
       text-transform: uppercase;
-      font-weight: 600;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      letter-spacing: 0.05em;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
     }
 
     .hero-btn:hover {
-      background: #fff;
+      background: rgba(255,255,255,0.85);
       color: #000;
-      border-color: #fff;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 640px) {
+      .hero-headline { font-size: 15px; }
+      .hero-sub { font-size: 13px; }
+      .hero-btn { font-size: 13px; }
     }
 
     .hero-explore {
