@@ -2,9 +2,6 @@
 <html lang="no">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aroy Film — Videoproduksjon i Oslo</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -23,7 +20,7 @@
   <meta name="twitter:image" content="https://aroyfilm.no/assets/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js" defer></script>
   <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js" defer></script>
   <script src="https://unpkg.com/isotope-packery@2.0.1/packery-mode.pkgd.min.js" defer></script>
@@ -179,38 +176,6 @@
       .hero-btn { font-size: 13px; }
     }
 
-    .hero-explore {
-      position: absolute;
-      bottom: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-      font-size: 0.9rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--dim);
-      text-decoration: none;
-      transition: color 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
-      font-weight: 800;
-    }
-
-    .hero-explore:hover { color: var(--fg); }
-
-    .hero-arrow {
-      width: 18px;
-      height: 28px;
-      animation: bounce 1.8s ease-in-out infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(5px); }
-    }
-
     /* ── VIDEO MODAL ── */
     .modal {
       display: none;
@@ -364,21 +329,6 @@
       .columns.large-6,
       .columns.large-3 { width: 100%; }
       .grid-entry.tall::before { padding-top: 66%; }
-    }
-
-    @media (max-width: 480px) {
-      .grid-row {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 220px;
-      }
-      .grid-entry,
-      .grid-entry.count-1,
-      .grid-entry.count-4,
-      .grid-entry.count-5,
-      .grid-entry.count-6 {
-        grid-column: span 1;
-        grid-row: span 1;
-      }
     }
 
     /* ── BRANDS ── */
@@ -642,21 +592,28 @@
       gap: 5px;
       background: none;
       border: none;
+      outline: none;
       cursor: pointer;
       padding: 4px;
       z-index: 201;
+      -webkit-tap-highlight-color: transparent;
+      appearance: none;
     }
+
+    .hamburger:focus,
+    .hamburger:focus-visible { outline: none; }
 
     .hamburger span {
       display: block;
       width: 22px;
       height: 1.5px;
       background: var(--fg);
-      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+      transition: transform 0.3s ease, opacity 0.15s ease;
     }
 
     .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
     .mobile-menu {
@@ -729,7 +686,7 @@
       Legg inn di eiga videofil nedanfor.
       Døme: <source src="hero.mp4" type="video/mp4" />
     -->
-    <video class="hero-video" autoplay muted loop playsinline webkit-playsinline>
+    <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
       <source src="assets/videos/hero.mp4" type="video/mp4" />
     </video>
     <div class="hero-cta">
@@ -777,7 +734,7 @@
 
       <!-- Stor -->
       <div class="columns grid-entry large-6 fade" onclick="openModal('aCUdANF3blg')">
-        <div class="media"><img src="assets/thumbnails/marstein.jpg" alt="Marstein Festival" /></div>
+        <div class="media"><img src="assets/thumbnails/marstein.jpg" alt="Marstein Festival" loading="lazy" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Marstein Festival</h3>
@@ -788,7 +745,7 @@
 
       <!-- Liten -->
       <div class="columns grid-entry large-3 fade" onclick="openModal('WXX2qQKQCNU')">
-        <div class="media"><img src="assets/thumbnails/vaskeladden.png" alt="Vaskeladden" /></div>
+        <div class="media"><img src="assets/thumbnails/vaskeladden.jpg" alt="Vaskeladden" loading="lazy" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Vaskeladden</h3>
@@ -799,7 +756,7 @@
 
       <!-- Liten -->
       <div class="columns grid-entry large-3 fade" onclick="openModal('dangeCQ9xms')">
-        <div class="media"><img src="assets/thumbnails/gunnkvaale.jpg" alt="Gunn Kvaale" /></div>
+        <div class="media"><img src="assets/thumbnails/gunnkvaale.jpg" alt="Gunn Kvaale" loading="lazy" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Gunn Kvaale</h3>
@@ -814,19 +771,19 @@
   <!-- BRANDS -->
   <section id="brands" class="fade">
     <div class="brands-bg">
-      <video class="brands-video" autoplay muted loop playsinline webkit-playsinline>
+      <video class="brands-video" autoplay muted loop playsinline webkit-playsinline preload="metadata">
         <source src="assets/videos/brand.mp4" type="video/mp4" />
       </video>
     </div>
     <div class="brands-content">
       <p class="brands-label">Brands vi har jobba med</p>
       <div class="logo-row">
-        <div class="logo-box"><img src="assets/logos/josvanger.png" alt="Gaute Josvanger" /></div>
-        <div class="logo-box"><img src="assets/logos/autohuset.png" alt="Autohuset Sogn" /></div>
-        <div class="logo-box"><img src="assets/logos/mtg-music.png" alt="MTG Music" /></div>
-        <div class="logo-box"><img src="assets/logos/meklarhuset.webp" alt="Meklarhuset" /></div>
-        <div class="logo-box"><img src="assets/logos/vaskeladden.png" alt="Vaskeladden" /></div>
-        <div class="logo-box"><img src="assets/logos/dods.png" alt="Døds" /></div>
+        <div class="logo-box"><img src="assets/logos/josvanger.png" alt="Gaute Josvanger" loading="lazy" /></div>
+        <div class="logo-box"><img src="assets/logos/autohuset.png" alt="Autohuset Sogn" loading="lazy" /></div>
+        <div class="logo-box"><img src="assets/logos/mtg-music.png" alt="MTG Music" loading="lazy" /></div>
+        <div class="logo-box"><img src="assets/logos/meklarhuset.webp" alt="Meklarhuset" loading="lazy" /></div>
+        <div class="logo-box"><img src="assets/logos/vaskeladden.png" alt="Vaskeladden" loading="lazy" /></div>
+        <div class="logo-box"><img src="assets/logos/dods.png" alt="Døds" loading="lazy" /></div>
       </div>
     </div>
   </section>
