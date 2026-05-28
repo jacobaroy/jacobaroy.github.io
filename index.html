@@ -417,10 +417,11 @@
     }
 
     .about-vista {
-      width: 100%;
+      width: calc(100% - 2 * clamp(1.5rem, 5vw, 5rem));
+      max-width: 1400px;
       height: 75vh;
       max-height: 800px;
-      margin-top: clamp(3rem, 6vw, 6rem);
+      margin: clamp(3rem, 6vw, 6rem) auto 0;
       overflow: hidden;
     }
 
