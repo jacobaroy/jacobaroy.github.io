@@ -641,11 +641,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 80px;
+      justify-content: space-between;
       width: 100%;
       max-width: 1500px;
-      padding: 0 4vw;
+      height: 100%;
+      padding: clamp(2.5rem, 5vw, 5rem) 4vw;
       text-align: center;
     }
 
@@ -659,6 +659,18 @@
       text-transform: uppercase;
       margin: 0;
       text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+    }
+
+    .brands-cta {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 1.5px;
+      color: #fff;
+      text-transform: uppercase;
+      margin: 0;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
     }
 
     .logo-row {
@@ -699,6 +711,10 @@
       .brands-label {
         font-size: 28px;
         letter-spacing: 1.5px;
+      }
+      .brands-cta {
+        font-size: 18px;
+        letter-spacing: 1.2px;
       }
       .logo-row {
         grid-template-columns: repeat(3, 1fr);
@@ -1195,6 +1211,7 @@
         <div class="logo-box"><img src="assets/logos/vaskeladden.png" alt="Vaskeladden" loading="lazy" /></div>
         <div class="logo-box"><img src="assets/logos/dods.png" alt="Døds" loading="lazy" /></div>
       </div>
+      <p class="brands-cta">Vil du bli den neste?</p>
     </div>
   </section>
 
