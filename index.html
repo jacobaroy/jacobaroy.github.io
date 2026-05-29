@@ -421,6 +421,77 @@
       display: block;
     }
 
+    .services-list {
+      list-style: none;
+      margin: clamp(3rem, 6vw, 6rem) 0 0;
+      padding: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .service-row {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .service-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: clamp(1rem, 1.8vw, 1.4rem) 0;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      color: rgba(255, 255, 255, 0.78);
+      transition: color 0.2s ease;
+      text-align: left;
+      -webkit-appearance: none;
+      appearance: none;
+      outline: none;
+    }
+
+    .service-toggle:hover,
+    .service-row.open .service-toggle {
+      color: #fff;
+    }
+
+    .service-name {
+      font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .service-plus {
+      font-size: clamp(1.3rem, 1.5vw, 1.6rem);
+      font-weight: 300;
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+
+    .service-row.open .service-plus {
+      transform: rotate(45deg);
+    }
+
+    .service-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .service-row.open .service-detail {
+      max-height: 240px;
+      padding: 0 0 clamp(1.2rem, 2vw, 1.6rem);
+    }
+
+    .service-detail p {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 60ch;
+      margin: 0;
+    }
+
     @media (max-width: 768px) {
       .about-hero {
         height: 55vh;
@@ -925,6 +996,63 @@
           <img src="assets/about/detail.jpg" alt="AROYFILM" loading="lazy" />
         </div>
       </div>
+
+      <ul class="services-list">
+        <li class="service-row">
+          <button class="service-toggle" type="button">
+            <span class="service-name">Konseptutvikling</span>
+            <span class="service-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="service-detail">
+            <p>Idé, manus, moodboard. Me startar prosessen lenge før kameraet kjem fram.</p>
+          </div>
+        </li>
+        <li class="service-row">
+          <button class="service-toggle" type="button">
+            <span class="service-name">Reklamefilm</span>
+            <span class="service-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="service-detail">
+            <p>Kampanjar, brand-film og reklame som blir lagt merke til.</p>
+          </div>
+        </li>
+        <li class="service-row">
+          <button class="service-toggle" type="button">
+            <span class="service-name">Aftermovie</span>
+            <span class="service-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="service-detail">
+            <p>Festival, event, sportsarrangement. Me fangar stemninga slik at den lever vidare.</p>
+          </div>
+        </li>
+        <li class="service-row">
+          <button class="service-toggle" type="button">
+            <span class="service-name">Bedriftsfilm</span>
+            <span class="service-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="service-detail">
+            <p>Profilfilm, rekruttering og intern kommunikasjon som styrkar bedrifta utad.</p>
+          </div>
+        </li>
+        <li class="service-row">
+          <button class="service-toggle" type="button">
+            <span class="service-name">SoMe-innhald</span>
+            <span class="service-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="service-detail">
+            <p>Reels, TikTok og Shorts. Vertikalt, snappy og laga for plattformene folk faktisk er på.</p>
+          </div>
+        </li>
+        <li class="service-row">
+          <button class="service-toggle" type="button">
+            <span class="service-name">Musikkvideo</span>
+            <span class="service-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="service-detail">
+            <p>Frå konsert til konsept. Live, regissert eller hybrid.</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -1012,6 +1140,12 @@
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth' });
         }
+      });
+    });
+
+    document.querySelectorAll('.service-toggle').forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.parentElement.classList.toggle('open');
       });
     });
 
