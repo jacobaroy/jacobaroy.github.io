@@ -571,12 +571,12 @@
 
     @media (max-width: 768px) {
       .about-hero {
-        height: 55vh;
+        height: 70vh;
       }
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        align-items: start;
+      .about-hero-content {
+        padding-bottom: 1.75rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
       }
     }
 
@@ -711,9 +711,32 @@
       font-family: 'Inter', sans-serif;
       font-size: clamp(1.8rem, 3.5vw, 3.5rem);
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1;
       letter-spacing: -0.02em;
       text-transform: uppercase;
+      margin: 0 0 1.5rem;
+    }
+
+    .c-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(0.85rem, 1vw, 1rem);
+      color: rgba(255, 255, 255, 0.55);
+      margin: 0 0 0.5rem;
+    }
+
+    .c-mail {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.4vw, 1.3rem);
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .c-mail:hover {
+      border-color: #fff;
     }
 
     form { display: flex; flex-direction: column; gap: 1.2rem; }
@@ -1159,7 +1182,9 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="c-left fade">
-      <h2>Kontakt oss</h2>
+      <h2>Skal me lage<br />noko saman?</h2>
+      <p class="c-sub">Fyll ut skjemaet, eller send oss ein direkte:</p>
+      <a class="c-mail" href="mailto:hei@aroyfilm.no">hei@aroyfilm.no</a>
     </div>
     <div class="fade">
       <form onsubmit="handleSubmit(event)">
