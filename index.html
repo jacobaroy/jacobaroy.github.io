@@ -61,12 +61,16 @@
     }
 
     .logo {
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      display: block;
       color: var(--fg);
       text-decoration: none;
+      line-height: 0;
+    }
+
+    .logo img {
+      display: block;
+      height: 22px;
+      width: auto;
     }
 
     .nav-links {
@@ -798,12 +802,16 @@
     }
 
     .footer-logo {
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      display: block;
       color: var(--fg);
       text-decoration: none;
+      line-height: 0;
+    }
+
+    .footer-logo img {
+      display: block;
+      height: 26px;
+      width: auto;
     }
 
     .footer-cols {
@@ -912,7 +920,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="logo">AROYFILM</a>
+    <a href="#" class="logo" aria-label="Aroyfilm"><img src="assets/logos/aroyfilm.png" alt="Aroyfilm" /></a>
     <ul class="nav-links">
       <li><a href="#projects">Prosjekter</a></li>
       <li><a href="#about">Om oss</a></li>
@@ -1187,7 +1195,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <a href="#" class="footer-logo">AROYFILM</a>
+    <a href="#" class="footer-logo" aria-label="Aroyfilm"><img src="assets/logos/aroyfilm.png" alt="Aroyfilm" /></a>
     <div class="footer-cols">
       <div class="footer-col">
         <p class="footer-col-title">Adresse</p>
