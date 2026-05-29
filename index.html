@@ -263,9 +263,6 @@
       padding-top: 66%;
     }
 
-    /* Vertikal fliser (for Shorts) — dobbel høgde */
-    .grid-entry.tall::before { padding-top: 132%; }
-
     .grid-entry .media {
       position: absolute;
       inset: 0;
@@ -329,7 +326,6 @@
     @media (max-width: 640px) {
       .columns.large-6,
       .columns.large-3 { width: 100%; }
-      .grid-entry.tall::before { padding-top: 66%; }
     }
 
     /* ── ABOUT US ── */
@@ -425,45 +421,6 @@
       line-height: 1;
     }
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 4vw, 4rem);
-      align-items: start;
-    }
-
-    .about-left {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .about-text {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(1rem, 1.15vw, 1.2rem);
-      font-weight: 400;
-      line-height: 1.55;
-      color: rgba(255, 255, 255, 0.78);
-      max-width: 42ch;
-    }
-
-    .about-text p {
-      margin: 0 0 1rem;
-    }
-
-    .about-text p:last-child {
-      margin: 0;
-    }
-
-    .about-detail {
-      overflow: hidden;
-    }
-
-    .about-detail img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
     .about-zigzag {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
@@ -489,7 +446,14 @@
     }
 
     .about-detail {
+      overflow: hidden;
       margin-top: clamp(7rem, 11vw, 11rem);
+    }
+
+    .about-detail img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .services-list {
@@ -499,7 +463,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.18);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .about-zigzag {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -573,20 +537,9 @@
       margin: 0;
     }
 
-    .about-closer {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(2rem, 5vw, 4.5rem);
-      font-weight: 900;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      color: #fff;
-      margin: clamp(3rem, 6vw, 6rem) 0 0;
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .about-hero {
-        height: 70vh;
+        height: 65vh;
       }
       .about-hero-content {
         padding-bottom: 1.75rem;
@@ -611,13 +564,6 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-    }
-
-    .brands-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
     }
 
     .brands-image {
@@ -701,28 +647,33 @@
       opacity: 0.95;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 900px) {
       #brands {
         height: auto;
-        min-height: 400px;
-        padding: 60px 0;
+        padding: 4rem 0;
+      }
+      .brands-content {
+        height: auto;
+        padding: 0 5vw;
+        justify-content: center;
+        gap: 2.5rem;
       }
       .brands-label {
-        font-size: 28px;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
         letter-spacing: 1.5px;
       }
       .brands-cta {
-        font-size: 14px;
+        font-size: clamp(0.85rem, 2vw, 1.1rem);
         letter-spacing: 1px;
       }
       .logo-row {
         grid-template-columns: repeat(3, 1fr);
-        gap: 0.6rem 0.3rem;
-        max-width: 300px;
+        gap: 0.8rem 0.5rem;
+        max-width: 360px;
       }
       .logo-box {
-        max-width: 80px;
-        height: 40px;
+        max-width: 90px;
+        height: 44px;
       }
     }
 
@@ -746,29 +697,6 @@
       line-height: 1;
       letter-spacing: -0.02em;
       text-transform: uppercase;
-      margin: 0 0 1.5rem;
-    }
-
-    .c-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(0.85rem, 1vw, 1rem);
-      color: rgba(255, 255, 255, 0.55);
-      margin: 0 0 0.5rem;
-    }
-
-    .c-mail {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(1rem, 1.4vw, 1.3rem);
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      padding-bottom: 2px;
-      transition: border-color 0.2s;
-    }
-
-    .c-mail:hover {
-      border-color: #fff;
     }
 
     form { display: flex; flex-direction: column; gap: 1.2rem; }
