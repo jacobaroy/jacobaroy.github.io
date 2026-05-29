@@ -383,14 +383,6 @@
       padding: clamp(2rem, 5vw, 5rem) clamp(1.5rem, 3vw, 3rem) clamp(0.25rem, 0.75vw, 0.75rem);
     }
 
-    .about-hero-content .about-text {
-      max-width: 56ch;
-    }
-
-    .about-hero-content .about-text p {
-      color: rgba(255, 255, 255, 0.92);
-      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
-    }
 
     .about-content {
       max-width: 1400px;
@@ -472,12 +464,33 @@
       display: block;
     }
 
-    .about-services-row {
+    .about-zigzag {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: clamp(2rem, 4vw, 4rem);
+      grid-template-columns: 1.4fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
       align-items: start;
-      margin-top: 0;
+    }
+
+    .about-text {
+      max-width: 50ch;
+      margin: 0 0 clamp(3rem, 6vw, 6rem);
+    }
+
+    .about-text p {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.15vw, 1.2rem);
+      font-weight: 400;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0 0 1rem;
+    }
+
+    .about-text p:last-child {
+      margin: 0;
+    }
+
+    .about-detail {
+      margin-top: clamp(5rem, 10vw, 12rem);
     }
 
     .services-list {
@@ -488,9 +501,12 @@
     }
 
     @media (max-width: 768px) {
-      .about-services-row {
+      .about-zigzag {
         grid-template-columns: 1fr;
         gap: 2rem;
+      }
+      .about-detail {
+        margin-top: 1rem;
       }
     }
 
@@ -1088,15 +1104,16 @@
           <span class="ah-small">Small crew.</span>
           <span class="ah-big">Big vision</span>
         </h2>
-        <div class="about-text">
-          <p>For oss betyr det at du får eit kompakt og kreativt team som er lett å jobba med, raskt å planleggja med og sterkt visuelt. Me held prosessen enkel, men ambisjonane store.</p>
-          <p>Me er eit kreativt produksjonsselskap for deg som vil ha ein enkel prosess, tydelege idéar og innhald som faktisk blir brukt. Me jobbar raskt, målretta og tett på kunden frå første idé til ferdig AROYFILM.</p>
-        </div>
       </div>
     </div>
     <div class="about-content">
 
-      <div class="about-services-row">
+      <div class="about-zigzag">
+        <div class="about-text-col">
+          <div class="about-text">
+            <p>For oss betyr det at du får eit kompakt og kreativt team som er lett å jobba med, raskt å planleggja med og sterkt visuelt. Me held prosessen enkel, men ambisjonane store.</p>
+            <p>Me er eit kreativt produksjonsselskap for deg som vil ha ein enkel prosess, tydelege idéar og innhald som faktisk blir brukt. Me jobbar raskt, målretta og tett på kunden frå første idé til ferdig AROYFILM.</p>
+          </div>
       <ul class="services-list">
         <li class="service-row">
           <button class="service-toggle" type="button">
@@ -1153,9 +1170,10 @@
           </div>
         </li>
       </ul>
-      <div class="about-detail">
-        <img src="assets/about/detail.jpg" alt="AROYFILM" loading="lazy" />
-      </div>
+        </div>
+        <div class="about-detail">
+          <img src="assets/about/detail.jpg" alt="AROYFILM" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
