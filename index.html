@@ -286,20 +286,28 @@
       transition: transform 0.5s ease;
     }
 
-    .grid-entry:hover img { transform: scale(1.05); }
-
     .grid-entry-content {
       position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.6);
-      transition: background 0.3s ease;
+      transition: background 0.5s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
     }
 
-    .grid-entry:hover .grid-entry-content { background: rgba(0,0,0,0.1); }
+    /* Hover-effekt berre på einingar med ekte muspekar (ikkje touch) */
+    @media (hover: hover) and (pointer: fine) {
+      .grid-entry:hover img { transform: scale(1.05); }
+      .grid-entry:hover .grid-entry-content { background: rgba(0,0,0,0.1); }
+    }
+
+    /* Spotlight på mobil — dimm alle, lys opp den i fokus */
+    @media (max-width: 900px) {
+      .grid-entry-content { background: rgba(0,0,0,0.78); }
+      .grid-entry.in-focus .grid-entry-content { background: rgba(0,0,0,0.25); }
+    }
 
     .grid-entry-text { padding: 20px 24px; }
 
@@ -1242,6 +1250,16 @@
         this.parentElement.classList.toggle('open');
       });
     });
+
+    // Mobil-spotlight: lys opp grid-tile som er midt på skjermen
+    if (window.matchMedia('(max-width: 900px)').matches && 'IntersectionObserver' in window) {
+      const spotObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle('in-focus', entry.isIntersecting);
+        });
+      }, { rootMargin: '-35% 0px -35% 0px' });
+      document.querySelectorAll('.grid-entry').forEach(el => spotObserver.observe(el));
+    }
 
     function toggleMobileMenu() {
       document.getElementById('hamburger').classList.toggle('open');
