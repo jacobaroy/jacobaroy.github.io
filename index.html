@@ -257,6 +257,8 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      transform: translateZ(0);
+      backface-visibility: hidden;
     }
 
     .columns.large-6 { width: 50%; }
@@ -368,6 +370,7 @@
       object-position: center 50%;
       display: block;
       z-index: 0;
+      transform: translateZ(0);
     }
 
     .about-hero-gradient {
@@ -590,6 +593,7 @@
       object-fit: cover;
       object-position: center 65%;
       display: block;
+      transform: translateZ(0);
     }
 
     .brands-overlay {
@@ -1247,6 +1251,20 @@
         this.parentElement.classList.toggle('open');
       });
     });
+
+    // Spar batteri og GPU: pause hero-video når den ikkje er synleg
+    if ('IntersectionObserver' in window) {
+      const heroVid = document.querySelector('.hero-video');
+      if (heroVid) {
+        new IntersectionObserver(([e]) => {
+          if (e.isIntersecting) {
+            heroVid.play().catch(() => {});
+          } else {
+            heroVid.pause();
+          }
+        }, { threshold: 0.1 }).observe(heroVid);
+      }
+    }
 
     // Mobil-spotlight: lys opp berre ein grid-tile om gongen (den mest synlege)
     if (window.matchMedia('(max-width: 900px)').matches && 'IntersectionObserver' in window) {
