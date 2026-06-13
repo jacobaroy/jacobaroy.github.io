@@ -122,9 +122,23 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.42);
+      background: rgba(0, 0, 0, 0.45);
       pointer-events: none;
       z-index: 1;
+      -webkit-mask-image:
+        linear-gradient(black, black),
+        url('assets/logos/aroyfilm.png');
+      -webkit-mask-position: 0 0, center 53%;
+      -webkit-mask-size: 100% 100%, clamp(220px, 55vw, 520px) auto;
+      -webkit-mask-repeat: no-repeat, no-repeat;
+      -webkit-mask-composite: source-out;
+      mask-image:
+        linear-gradient(black, black),
+        url('assets/logos/aroyfilm.png');
+      mask-position: 0 0, center 53%;
+      mask-size: 100% 100%, clamp(220px, 55vw, 520px) auto;
+      mask-repeat: no-repeat, no-repeat;
+      mask-composite: subtract;
     }
 
     .hero-cta {
