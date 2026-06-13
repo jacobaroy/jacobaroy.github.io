@@ -109,6 +109,14 @@
       background: #000;
     }
 
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .hero-cta {
       position: relative;
       z-index: 1;
@@ -969,6 +977,9 @@
 
   <!-- HERO -->
   <section id="hero">
+    <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture x-webkit-airplay="deny">
+      <source src="assets/videos/hero.mp4" type="video/mp4" />
+    </video>
     <div class="hero-cta">
       <h1 class="hero-headline">Eit kreativt produksjonsselskap</h1>
       <a href="#projects" class="hero-btn">Sjå arbeidet</a>
@@ -1259,6 +1270,20 @@
         });
       }, { threshold: 0.12 });
       document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+    }
+
+    // Spar batteri og GPU: pause hero-video når den ikkje er synleg
+    if ('IntersectionObserver' in window) {
+      const heroVid = document.querySelector('.hero-video');
+      if (heroVid) {
+        new IntersectionObserver(([e]) => {
+          if (e.isIntersecting) {
+            heroVid.play().catch(() => {});
+          } else {
+            heroVid.pause();
+          }
+        }, { threshold: 0.1 }).observe(heroVid);
+      }
     }
 
     // Mobil-spotlight: lys opp berre ein grid-tile om gongen (den mest synlege)
