@@ -129,15 +129,22 @@
       margin-top: 18vh;
     }
 
+    .liquid-glass-defs {
+      position: absolute;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+
     .hero-logo-glass {
       width: clamp(220px, 55vw, 520px);
       aspect-ratio: 600 / 71;
       -webkit-mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
               mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(14px) saturate(140%) brightness(0.78);
-      -webkit-backdrop-filter: blur(14px) saturate(140%) brightness(0.78);
-      filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: url(#liquidGlass) blur(3px) brightness(1.05) saturate(130%);
+      -webkit-backdrop-filter: url(#liquidGlass) blur(3px) brightness(1.05) saturate(130%);
+      filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
       margin-bottom: 1.5rem;
     }
 
@@ -986,6 +993,16 @@
       <iframe id="modalFrame" src="" allowfullscreen allow="autoplay"></iframe>
     </div>
   </div>
+
+  <!-- SVG filter for liquid glass refraction -->
+  <svg class="liquid-glass-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="liquidGlass" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="4" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
 
   <!-- HERO -->
   <section id="hero">
