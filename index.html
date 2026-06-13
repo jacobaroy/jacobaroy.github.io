@@ -141,10 +141,15 @@
       aspect-ratio: 600 / 71;
       -webkit-mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
               mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: url(#liquidGlass) blur(3px) brightness(1.05) saturate(130%);
-      -webkit-backdrop-filter: url(#liquidGlass) blur(3px) brightness(1.05) saturate(130%);
-      filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: url(#liquidGlass) blur(1px) brightness(1.15) contrast(1.08) saturate(140%);
+      -webkit-backdrop-filter: url(#liquidGlass) blur(1px) brightness(1.15) contrast(1.08) saturate(140%);
+      filter:
+        drop-shadow(0 0 0.5px rgba(255, 255, 255, 0.85))
+        drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.45))
+        drop-shadow(0 1px 0 rgba(255, 255, 255, 0.4))
+        drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4))
+        drop-shadow(0 14px 36px rgba(0, 0, 0, 0.45));
       margin-bottom: 1.5rem;
     }
 
@@ -998,8 +1003,8 @@
   <svg class="liquid-glass-defs" aria-hidden="true" focusable="false">
     <defs>
       <filter id="liquidGlass" x="-10%" y="-10%" width="120%" height="120%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="4" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.018 0.022" numOctaves="2" seed="6" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="38" xChannelSelector="R" yChannelSelector="G"/>
       </filter>
     </defs>
   </svg>
