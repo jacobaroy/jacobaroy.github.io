@@ -129,6 +129,18 @@
       margin-top: 18vh;
     }
 
+    .hero-logo-glass {
+      width: clamp(220px, 55vw, 520px);
+      aspect-ratio: 600 / 71;
+      -webkit-mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
+              mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(14px) saturate(180%) brightness(1.08);
+      -webkit-backdrop-filter: blur(14px) saturate(180%) brightness(1.08);
+      filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35));
+      margin-bottom: 1.5rem;
+    }
+
     .hero-headline {
       font-family: 'Inter', sans-serif;
       font-size: 17px;
@@ -981,6 +993,7 @@
       <source src="assets/videos/hero.mp4" type="video/mp4" />
     </video>
     <div class="hero-cta">
+      <div class="hero-logo-glass" aria-label="Aroyfilm"></div>
       <h1 class="hero-headline">Eit kreativt produksjonsselskap</h1>
       <a href="#projects" class="hero-btn">Sjå arbeidet</a>
     </div>
