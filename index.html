@@ -125,6 +125,20 @@
       background: rgba(0, 0, 0, 0.45);
       pointer-events: none;
       z-index: 1;
+      -webkit-mask-image:
+        linear-gradient(black, black),
+        url('assets/logos/aroyfilm.png');
+      -webkit-mask-position: 0 0, var(--logo-cx, 50%) var(--logo-cy, 50%);
+      -webkit-mask-size: 100% 100%, var(--logo-w, 520px) auto;
+      -webkit-mask-repeat: no-repeat, no-repeat;
+      -webkit-mask-composite: source-out;
+      mask-image:
+        linear-gradient(black, black),
+        url('assets/logos/aroyfilm.png');
+      mask-position: 0 0, var(--logo-cx, 50%) var(--logo-cy, 50%);
+      mask-size: 100% 100%, var(--logo-w, 520px) auto;
+      mask-repeat: no-repeat, no-repeat;
+      mask-composite: subtract;
     }
 
     .hero-cta {
@@ -152,8 +166,8 @@
       -webkit-mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
               mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
       background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: url(#liquidGlass) blur(1px) brightness(2.4) contrast(1.15) saturate(150%);
-      -webkit-backdrop-filter: url(#liquidGlass) blur(1px) brightness(2.4) contrast(1.15) saturate(150%);
+      backdrop-filter: url(#liquidGlass) blur(1px) brightness(1.2) contrast(1.08) saturate(140%);
+      -webkit-backdrop-filter: url(#liquidGlass) blur(1px) brightness(1.2) contrast(1.08) saturate(140%);
       filter:
         drop-shadow(0 0 0.5px rgba(255, 255, 255, 0.85))
         drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.45))
@@ -1324,6 +1338,24 @@
         }, { threshold: 0.1 }).observe(heroVid);
       }
     }
+
+    // Dynamisk cutout for glas-logoen: les faktisk posisjon på sida
+    function syncLogoMask() {
+      const hero = document.getElementById('hero');
+      const logo = document.querySelector('.hero-logo-glass');
+      if (!hero || !logo) return;
+      const h = hero.getBoundingClientRect();
+      const l = logo.getBoundingClientRect();
+      if (h.width === 0 || h.height === 0) return;
+      const cx = ((l.left - h.left + l.width / 2) / h.width) * 100;
+      const cy = ((l.top - h.top + l.height / 2) / h.height) * 100;
+      hero.style.setProperty('--logo-cx', cx + '%');
+      hero.style.setProperty('--logo-cy', cy + '%');
+      hero.style.setProperty('--logo-w', (l.width * 1.18) + 'px');
+    }
+    window.addEventListener('load', syncLogoMask);
+    window.addEventListener('resize', syncLogoMask);
+    document.addEventListener('DOMContentLoaded', syncLogoMask);
 
     // Mobil-spotlight: lys opp berre ein grid-tile om gongen (den mest synlege)
     if (window.matchMedia('(max-width: 900px)').matches && 'IntersectionObserver' in window) {
