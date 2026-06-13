@@ -115,6 +115,20 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      z-index: 0;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.42);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-cta {
+      z-index: 2;
     }
 
     .hero-cta {
