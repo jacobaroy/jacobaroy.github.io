@@ -127,14 +127,14 @@
       z-index: 1;
       -webkit-mask-image:
         linear-gradient(black, black),
-        url('assets/logos/aroyfilm.png');
+        url('assets/logos/aroyfilm-feathered.png');
       -webkit-mask-position: 0 0, var(--logo-cx, 50%) var(--logo-cy, 50%);
       -webkit-mask-size: 100% 100%, var(--logo-w, 520px) auto;
       -webkit-mask-repeat: no-repeat, no-repeat;
       -webkit-mask-composite: source-out;
       mask-image:
         linear-gradient(black, black),
-        url('assets/logos/aroyfilm.png');
+        url('assets/logos/aroyfilm-feathered.png');
       mask-position: 0 0, var(--logo-cx, 50%) var(--logo-cy, 50%);
       mask-size: 100% 100%, var(--logo-w, 520px) auto;
       mask-repeat: no-repeat, no-repeat;
@@ -1351,7 +1351,7 @@
       const cy = ((l.top - h.top + l.height / 2) / h.height) * 100;
       hero.style.setProperty('--logo-cx', cx + '%');
       hero.style.setProperty('--logo-cy', cy + '%');
-      hero.style.setProperty('--logo-w', (l.width * 1.06) + 'px');
+      hero.style.setProperty('--logo-w', (l.width * 1.15) + 'px');
     }
     window.addEventListener('load', syncLogoMask);
     window.addEventListener('resize', syncLogoMask);
