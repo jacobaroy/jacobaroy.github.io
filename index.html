@@ -380,6 +380,89 @@
       .columns.large-3 { width: 100%; }
     }
 
+    /* ── FEATURED STRIP (3 lika store på framsida) ── */
+    .featured-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.4rem, 1vw, 1rem);
+      padding: clamp(2rem, 4vw, 4rem) clamp(0.4rem, 1vw, 1rem) 0;
+    }
+
+    .featured-tile {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      cursor: pointer;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+
+    .featured-tile .media {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .featured-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .featured-tile .grid-entry-content {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .featured-tile:hover img { transform: scale(1.05); }
+      .featured-tile:hover .grid-entry-content { background: rgba(0, 0, 0, 0.15); }
+    }
+
+    @media (max-width: 768px) {
+      .featured-strip {
+        grid-template-columns: 1fr;
+        padding: clamp(1.5rem, 4vw, 3rem) clamp(0.4rem, 1vw, 1rem) 0;
+      }
+    }
+
+    .see-more-wrap {
+      display: flex;
+      justify-content: center;
+      padding: clamp(2.5rem, 5vw, 5rem) 1rem clamp(3rem, 6vw, 6rem);
+    }
+
+    .see-more-btn {
+      display: inline-block;
+      padding: 1rem 2.6rem;
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .see-more-btn:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      transform: translateY(-1px);
+    }
+
     /* ── ABOUT US ── */
     #about {
       background: #000;
@@ -1025,73 +1108,15 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- PROJECTS — front-page featured strip (3 lika store) -->
   <section id="projects">
-    <div id="grid-container" class="row">
-
-      <!-- Stor -->
-      <div class="columns grid-entry large-6 fade" onclick="openModal('eiWb0BrE7oc')">
+    <div class="featured-strip">
+      <div class="featured-tile" onclick="openModal('eiWb0BrE7oc')">
         <div class="media"><img src="assets/thumbnails/showreel.jpg" alt="Aroyfilm Showreel" loading="lazy" /></div>
       </div>
 
-      <!-- Stor -->
-      <div class="columns grid-entry large-6 fade" onclick="openModal('0p8SGdsE4ZM')">
-        <div class="media"><img src="assets/thumbnails/josvanger.jpg" alt="Gaute Josvanger" /></div>
-        <div class="grid-entry-content">
-          <div class="grid-entry-text">
-            <h3 class="grid-entry-title">Gaute Josvanger</h3>
-            <p class="grid-entry-cat">Reklamefilm</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Liten -->
-      <div class="columns grid-entry large-3 fade" onclick="openModal('XIUvYTYEWVM')">
-        <div class="media"><img src="assets/thumbnails/josvanger-elektro.jpg" alt="Josvanger Elektro" /></div>
-        <div class="grid-entry-content">
-          <div class="grid-entry-text">
-            <h3 class="grid-entry-title">Josvanger Elektro</h3>
-            <p class="grid-entry-cat">Reklamefilm</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Liten -->
-      <div class="columns grid-entry large-3 fade" onclick="openModal('o18ZUwoCXYk')">
-        <div class="media"><img src="assets/thumbnails/jlas.jpg" alt="JLAS x Fløyen" /></div>
-        <div class="grid-entry-content">
-          <div class="grid-entry-text">
-            <h3 class="grid-entry-title">JLAS x Fløyen</h3>
-            <p class="grid-entry-cat">Live musikkvideo</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Liten -->
-      <div class="columns grid-entry large-3 fade" onclick="openModal('z99dvE-1Gw4')">
-        <div class="media"><img src="assets/thumbnails/sogndal.jpg" alt="Sogndal Fotball" /></div>
-        <div class="grid-entry-content">
-          <div class="grid-entry-text">
-            <h3 class="grid-entry-title">Sogndal Fotball</h3>
-            <p class="grid-entry-cat">Sportsfilm</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Liten -->
-      <div class="columns grid-entry large-3 fade" onclick="openModal('2HFQ-Hl7ivI')">
-        <div class="media"><img src="assets/thumbnails/vaskeladden.jpg" alt="Vaskeladden" loading="lazy" /></div>
-        <div class="grid-entry-content">
-          <div class="grid-entry-text">
-            <h3 class="grid-entry-title">Vaskeladden</h3>
-            <p class="grid-entry-cat">Brand-film</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stor -->
-      <div class="columns grid-entry large-6 fade" onclick="openModal('aCUdANF3blg')">
-        <div class="media"><img src="assets/thumbnails/marstein.jpg" alt="Marstein Festival" loading="lazy" /></div>
+      <div class="featured-tile" onclick="openModal('aCUdANF3blg')">
+        <div class="media"><img src="assets/thumbnails/marstein.jpg" alt="Marstein" loading="lazy" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Marstein</h3>
@@ -1100,8 +1125,7 @@
         </div>
       </div>
 
-      <!-- Stor -->
-      <div class="columns grid-entry large-6 fade" onclick="openModal('95pKMzfoy2A')">
+      <div class="featured-tile" onclick="openModal('95pKMzfoy2A')">
         <div class="media"><img src="assets/thumbnails/krogsveen.jpg" alt="Krogsveen" loading="lazy" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
@@ -1110,7 +1134,10 @@
           </div>
         </div>
       </div>
+    </div>
 
+    <div class="see-more-wrap">
+      <a href="prosjekter.html" class="see-more-btn">Sjå meir</a>
     </div>
   </section>
 
