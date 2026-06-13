@@ -1028,7 +1028,7 @@
     <defs>
       <filter id="liquidGlass" x="-10%" y="-10%" width="120%" height="120%">
         <feTurbulence type="fractalNoise" baseFrequency="0.018 0.022" numOctaves="2" seed="6" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="38" xChannelSelector="R" yChannelSelector="G"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G"/>
       </filter>
     </defs>
   </svg>
@@ -1351,7 +1351,7 @@
       const cy = ((l.top - h.top + l.height / 2) / h.height) * 100;
       hero.style.setProperty('--logo-cx', cx + '%');
       hero.style.setProperty('--logo-cy', cy + '%');
-      hero.style.setProperty('--logo-w', (l.width * 1.35) + 'px');
+      hero.style.setProperty('--logo-w', (l.width * 1.06) + 'px');
     }
     window.addEventListener('load', syncLogoMask);
     window.addEventListener('resize', syncLogoMask);
