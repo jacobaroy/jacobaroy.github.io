@@ -122,19 +122,19 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.55);
       pointer-events: none;
       z-index: 1;
       -webkit-mask-image:
         linear-gradient(black, black),
-        url('assets/logos/aroyfilm-feathered.png');
+        url('assets/logos/aroyfilm.png');
       -webkit-mask-position: 0 0, var(--logo-cx, 50%) var(--logo-cy, 50%);
       -webkit-mask-size: 100% 100%, var(--logo-w, 520px) auto;
       -webkit-mask-repeat: no-repeat, no-repeat;
       -webkit-mask-composite: source-out;
       mask-image:
         linear-gradient(black, black),
-        url('assets/logos/aroyfilm-feathered.png');
+        url('assets/logos/aroyfilm.png');
       mask-position: 0 0, var(--logo-cx, 50%) var(--logo-cy, 50%);
       mask-size: 100% 100%, var(--logo-w, 520px) auto;
       mask-repeat: no-repeat, no-repeat;
@@ -153,27 +153,11 @@
       margin-top: 18vh;
     }
 
-    .liquid-glass-defs {
-      position: absolute;
-      width: 0;
-      height: 0;
-      pointer-events: none;
-    }
-
     .hero-logo-glass {
       width: clamp(220px, 55vw, 520px);
       aspect-ratio: 600 / 71;
       -webkit-mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
               mask: url('assets/logos/aroyfilm.png') center/contain no-repeat;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: url(#liquidGlass) blur(1px) brightness(1.2) contrast(1.08) saturate(140%);
-      -webkit-backdrop-filter: url(#liquidGlass) blur(1px) brightness(1.2) contrast(1.08) saturate(140%);
-      filter:
-        drop-shadow(0 0 0.5px rgba(255, 255, 255, 0.85))
-        drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.45))
-        drop-shadow(0 1px 0 rgba(255, 255, 255, 0.4))
-        drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4))
-        drop-shadow(0 14px 36px rgba(0, 0, 0, 0.45));
       margin-bottom: 1.5rem;
     }
 
@@ -1023,16 +1007,6 @@
     </div>
   </div>
 
-  <!-- SVG filter for liquid glass refraction -->
-  <svg class="liquid-glass-defs" aria-hidden="true" focusable="false">
-    <defs>
-      <filter id="liquidGlass" x="-10%" y="-10%" width="120%" height="120%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.018 0.022" numOctaves="2" seed="6" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-    </defs>
-  </svg>
-
   <!-- HERO -->
   <section id="hero">
     <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture x-webkit-airplay="deny">
@@ -1351,7 +1325,7 @@
       const cy = ((l.top - h.top + l.height / 2) / h.height) * 100;
       hero.style.setProperty('--logo-cx', cx + '%');
       hero.style.setProperty('--logo-cy', cy + '%');
-      hero.style.setProperty('--logo-w', (l.width * 1.04) + 'px');
+      hero.style.setProperty('--logo-w', l.width + 'px');
     }
     window.addEventListener('load', syncLogoMask);
     window.addEventListener('resize', syncLogoMask);
