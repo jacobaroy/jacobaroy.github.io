@@ -380,16 +380,22 @@
       .columns.large-3 { width: 100%; }
     }
 
-    /* ── FEATURED STRIP (3 lika store på framsida) ── */
+    /* ── FEATURED STRIP (sentrert showreel på svart) ── */
+    #projects {
+      background: #000;
+    }
+
     .featured-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(0.4rem, 1vw, 1rem);
-      padding: clamp(2rem, 4vw, 4rem) clamp(0.4rem, 1vw, 1rem) 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(3rem, 8vw, 8rem) clamp(1rem, 3vw, 3rem) 0;
     }
 
     .featured-tile {
       position: relative;
+      width: 100%;
+      max-width: 1100px;
       aspect-ratio: 16 / 9;
       overflow: hidden;
       cursor: pointer;
@@ -429,8 +435,7 @@
 
     @media (max-width: 768px) {
       .featured-strip {
-        grid-template-columns: 1fr;
-        padding: clamp(1.5rem, 4vw, 3rem) clamp(0.4rem, 1vw, 1rem) 0;
+        padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 3rem) 0;
       }
     }
 
@@ -1108,31 +1113,11 @@
     </div>
   </section>
 
-  <!-- PROJECTS — front-page featured strip (3 lika store) -->
+  <!-- PROJECTS — single centered showreel on black -->
   <section id="projects">
     <div class="featured-strip">
       <div class="featured-tile" onclick="openModal('eiWb0BrE7oc')">
         <div class="media"><img src="assets/thumbnails/showreel.jpg" alt="Aroyfilm Showreel" loading="lazy" /></div>
-      </div>
-
-      <div class="featured-tile" onclick="openModal('aCUdANF3blg')">
-        <div class="media"><img src="assets/thumbnails/marstein.jpg" alt="Marstein" loading="lazy" /></div>
-        <div class="grid-entry-content">
-          <div class="grid-entry-text">
-            <h3 class="grid-entry-title">Marstein</h3>
-            <p class="grid-entry-cat">Festival aftermovie</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="featured-tile" onclick="openModal('95pKMzfoy2A')">
-        <div class="media"><img src="assets/thumbnails/krogsveen.jpg" alt="Krogsveen" loading="lazy" /></div>
-        <div class="grid-entry-content">
-          <div class="grid-entry-text">
-            <h3 class="grid-entry-title">Krogsveen</h3>
-            <p class="grid-entry-cat">Boligvideo annonser</p>
-          </div>
-        </div>
       </div>
     </div>
 
