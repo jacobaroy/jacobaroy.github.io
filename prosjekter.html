@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AROYFILM</title>
+  <title>Prosjekter — AROYFILM</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <meta name="description" content="Small crew. Big vision. Aroyfilm, eit kreativt produksjonsselskap." />
   <meta property="og:title" content="AROYFILM" />
@@ -378,6 +378,51 @@
     @media (max-width: 640px) {
       .columns.large-6,
       .columns.large-3 { width: 100%; }
+    }
+
+    /* ── PAGE HEADER ── */
+    #projects-header {
+      background: #000;
+      padding: clamp(7rem, 14vw, 12rem) clamp(1.5rem, 4vw, 4rem) clamp(2rem, 5vw, 5rem);
+      text-align: center;
+    }
+
+    .page-header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .page-header-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin: 0 0 1rem;
+    }
+
+    .page-header-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0 0 1.2rem;
+    }
+
+    .page-header-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.25vw, 1.2rem);
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+    }
+
+    .nav-links a[aria-current="page"] {
+      color: var(--fg);
     }
 
     /* ── FEATURED STRIP (3 tiles sentrert på svart) ── */
@@ -1076,10 +1121,10 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="logo" aria-label="Aroyfilm"><img src="assets/logos/aroyfilm.png" alt="Aroyfilm" /></a>
+    <a href="/" class="logo" aria-label="Aroyfilm"><img src="assets/logos/aroyfilm.png" alt="Aroyfilm" /></a>
     <ul class="nav-links">
-      <li><a href="prosjekter.html">Prosjekter</a></li>
-      <li><a href="#about">Om oss</a></li>
+      <li><a href="prosjekter.html" aria-current="page">Prosjekter</a></li>
+      <li><a href="/#about">Om oss</a></li>
       <li><a href="#contact">Kontakt</a></li>
     </ul>
     <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
@@ -1090,7 +1135,7 @@
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="prosjekter.html" onclick="toggleMobileMenu()">Prosjekter</a>
-    <a href="#about" onclick="toggleMobileMenu()">Om oss</a>
+    <a href="/#about" onclick="toggleMobileMenu()">Om oss</a>
     <a href="#contact" onclick="toggleMobileMenu()">Kontakt</a>
   </div>
 
@@ -1102,27 +1147,82 @@
     </div>
   </div>
 
-  <!-- HERO -->
-  <section id="hero">
-    <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture x-webkit-airplay="deny">
-      <source src="assets/videos/hero.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-cta">
-      <div class="hero-logo-glass" aria-label="Aroyfilm"></div>
-      <h1 class="hero-headline">Eit kreativt produksjonsselskap</h1>
-      <a href="#projects" class="hero-btn">Utforsk</a>
+  <!-- PAGE HEADER -->
+  <section id="projects-header">
+    <div class="page-header-inner">
+      <p class="page-header-eyebrow">Aroyfilm 2026</p>
+      <h1 class="page-header-title">Prosjekter</h1>
+      <p class="page-header-sub">Eit utval av arbeidet vårt.</p>
     </div>
   </section>
 
-  <!-- PROJECTS — three featured tiles centered on black -->
+  <!-- PROJECTS GRID (full 8-tile) -->
   <section id="projects">
-    <div class="featured-strip">
-      <div class="featured-tile" onclick="openModal('eiWb0BrE7oc')">
+    <div id="grid-container" class="row">
+
+      <!-- Stor -->
+      <div class="columns grid-entry large-6 fade" onclick="openModal('eiWb0BrE7oc')">
         <div class="media"><img src="assets/thumbnails/showreel.jpg" alt="Aroyfilm Showreel" loading="lazy" /></div>
       </div>
 
-      <div class="featured-tile" onclick="openModal('aCUdANF3blg')">
-        <div class="media"><img src="assets/thumbnails/marstein.jpg" alt="Marstein" loading="lazy" /></div>
+      <!-- Stor -->
+      <div class="columns grid-entry large-6 fade" onclick="openModal('0p8SGdsE4ZM')">
+        <div class="media"><img src="assets/thumbnails/josvanger.jpg" alt="Gaute Josvanger" /></div>
+        <div class="grid-entry-content">
+          <div class="grid-entry-text">
+            <h3 class="grid-entry-title">Gaute Josvanger</h3>
+            <p class="grid-entry-cat">Reklamefilm</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liten -->
+      <div class="columns grid-entry large-3 fade" onclick="openModal('XIUvYTYEWVM')">
+        <div class="media"><img src="assets/thumbnails/josvanger-elektro.jpg" alt="Josvanger Elektro" /></div>
+        <div class="grid-entry-content">
+          <div class="grid-entry-text">
+            <h3 class="grid-entry-title">Josvanger Elektro</h3>
+            <p class="grid-entry-cat">Reklamefilm</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liten -->
+      <div class="columns grid-entry large-3 fade" onclick="openModal('o18ZUwoCXYk')">
+        <div class="media"><img src="assets/thumbnails/jlas.jpg" alt="JLAS x Fløyen" /></div>
+        <div class="grid-entry-content">
+          <div class="grid-entry-text">
+            <h3 class="grid-entry-title">JLAS x Fløyen</h3>
+            <p class="grid-entry-cat">Live musikkvideo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liten -->
+      <div class="columns grid-entry large-3 fade" onclick="openModal('z99dvE-1Gw4')">
+        <div class="media"><img src="assets/thumbnails/sogndal.jpg" alt="Sogndal Fotball" /></div>
+        <div class="grid-entry-content">
+          <div class="grid-entry-text">
+            <h3 class="grid-entry-title">Sogndal Fotball</h3>
+            <p class="grid-entry-cat">Sportsfilm</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liten -->
+      <div class="columns grid-entry large-3 fade" onclick="openModal('2HFQ-Hl7ivI')">
+        <div class="media"><img src="assets/thumbnails/vaskeladden.jpg" alt="Vaskeladden" loading="lazy" /></div>
+        <div class="grid-entry-content">
+          <div class="grid-entry-text">
+            <h3 class="grid-entry-title">Vaskeladden</h3>
+            <p class="grid-entry-cat">Brand-film</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stor -->
+      <div class="columns grid-entry large-6 fade" onclick="openModal('aCUdANF3blg')">
+        <div class="media"><img src="assets/thumbnails/marstein.jpg" alt="Marstein Festival" loading="lazy" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Marstein</h3>
@@ -1131,7 +1231,8 @@
         </div>
       </div>
 
-      <div class="featured-tile" onclick="openModal('95pKMzfoy2A')">
+      <!-- Stor -->
+      <div class="columns grid-entry large-6 fade" onclick="openModal('95pKMzfoy2A')">
         <div class="media"><img src="assets/thumbnails/krogsveen.jpg" alt="Krogsveen" loading="lazy" /></div>
         <div class="grid-entry-content">
           <div class="grid-entry-text">
@@ -1140,94 +1241,7 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="see-more-wrap">
-      <a href="prosjekter.html" class="see-more-btn">Sjå meir</a>
-    </div>
-  </section>
-
-  <!-- ABOUT US -->
-  <section id="about">
-    <div class="about-hero">
-      <img src="assets/about/team.jpg" alt="Aroy Film teamet" loading="lazy" />
-      <div class="about-hero-gradient"></div>
-      <div class="about-hero-content scroll-reveal">
-        <h2 class="about-headline">
-          <span class="ah-small">Small crew.</span>
-          <span class="ah-big">Big vision</span>
-        </h2>
-      </div>
-    </div>
-    <div class="about-content scroll-reveal">
-
-      <div class="about-zigzag">
-        <div class="about-text-col">
-          <div class="about-text">
-            <p>For oss betyr det at du får eit kompakt og kreativt team som er lett å jobba med, raskt å planleggja med og sterkt visuelt. Me held prosessen enkel, men ambisjonane store.</p>
-            <p>Me er eit kreativt produksjonsselskap for deg som vil ha ein enkel prosess, tydelege idéar og innhald som faktisk blir brukt. Me jobbar raskt, målretta og tett på kunden frå første idé til ferdig AROYFILM.</p>
-          </div>
-      <ul class="services-list">
-        <li class="service-row">
-          <button class="service-toggle" type="button">
-            <span class="service-name">Merkevarebygging</span>
-            <span class="service-plus" aria-hidden="true">+</span>
-          </button>
-          <div class="service-detail">
-            <p>Langsiktig partner, ikkje eingongsleverandør. Me byggjer tillit og synlegheit over tid gjennom jamleg visuelt innhald på sosiale medium. For meklarar, bedrifter og personlege merkevarer som vil bli valde framfor konkurrentane.</p>
-          </div>
-        </li>
-        <li class="service-row">
-          <button class="service-toggle" type="button">
-            <span class="service-name">Konseptutvikling</span>
-            <span class="service-plus" aria-hidden="true">+</span>
-          </button>
-          <div class="service-detail">
-            <p>Frå første samtale til ferdig retning. Me finn idéen som skiller seg ut, snakkar gjennom kva som skal sitje i hovudet til mottakaren, og kuttar bort alt anna. Konseptet skal vere kreativt, realistisk og målretta før kameraet kjem fram.</p>
-          </div>
-        </li>
-        <li class="service-row">
-          <button class="service-toggle" type="button">
-            <span class="service-name">Innholdsproduksjon</span>
-            <span class="service-plus" aria-hidden="true">+</span>
-          </button>
-          <div class="service-detail">
-            <p>Foto, film og redaksjonelt innhald skreddarsydd for kvar plattform du skal vere synleg på. Frå første idé til siste klipp.</p>
-          </div>
-        </li>
-        <li class="service-row">
-          <button class="service-toggle" type="button">
-            <span class="service-name">Reklamefilm</span>
-            <span class="service-plus" aria-hidden="true">+</span>
-          </button>
-          <div class="service-detail">
-            <p>Kampanjar og brandfilm som koplar merket ditt til folk og kultur. Resultat som funkar både kreativt og kommersielt.</p>
-          </div>
-        </li>
-        <li class="service-row">
-          <button class="service-toggle" type="button">
-            <span class="service-name">Eigedomsfilm</span>
-            <span class="service-plus" aria-hidden="true">+</span>
-          </button>
-          <div class="service-detail">
-            <p>Salgsvideo, annonser og brandfilm for eigedomsmeklarar og utbyggjarar. Drone, interiør og lifestyle tilpassa plattformene boligkjøparar er på.</p>
-          </div>
-        </li>
-        <li class="service-row">
-          <button class="service-toggle" type="button">
-            <span class="service-name">Sport og event</span>
-            <span class="service-plus" aria-hidden="true">+</span>
-          </button>
-          <div class="service-detail">
-            <p>Aftermovie, sportsfilm og livearrangement. Stemninga og energien lever vidare lenge etter at lyset slokkar.</p>
-          </div>
-        </li>
-      </ul>
-        </div>
-        <div class="about-detail">
-          <img src="assets/about/detail.jpg" alt="AROYFILM" loading="lazy" />
-        </div>
-      </div>
     </div>
   </section>
 
