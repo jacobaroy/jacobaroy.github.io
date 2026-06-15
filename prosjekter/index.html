@@ -394,30 +394,32 @@
 
     .page-header-eyebrow {
       font-family: 'Inter', sans-serif;
-      font-size: 0.78rem;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.55);
-      margin: 0 0 1rem;
+      color: rgba(255, 255, 255, 0.45);
+      margin: 0 0 1.2rem;
     }
 
     .page-header-title {
       font-family: 'Inter', sans-serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-size: clamp(3.2rem, 7.5vw, 6.5rem);
       font-weight: 900;
       line-height: 1;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.015em;
       text-transform: uppercase;
       color: #fff;
       margin: 0 0 1.2rem;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
     }
 
     .page-header-sub {
       font-family: 'Inter', sans-serif;
-      font-size: clamp(1rem, 1.25vw, 1.2rem);
+      font-size: clamp(1rem, 1.15vw, 1.2rem);
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.8);
       margin: 0;
     }
 
@@ -1149,9 +1151,9 @@
 
   <!-- PAGE HEADER -->
   <section id="projects-header">
-    <div class="page-header-inner">
-      <p class="page-header-eyebrow">Aroyfilm 2026</p>
-      <h1 class="page-header-title">Prosjekter</h1>
+    <div class="page-header-inner scroll-reveal">
+      <p class="page-header-eyebrow">Aroyfilm 2025</p>
+      <h1 class="page-header-title">Prosjekt</h1>
       <p class="page-header-sub">Eit utval av arbeidet vårt.</p>
     </div>
   </section>
@@ -1395,28 +1397,40 @@
     window.addEventListener('resize', syncLogoMask);
     document.addEventListener('DOMContentLoaded', syncLogoMask);
 
-    // Mobil-spotlight: lys opp berre ein grid-tile om gongen (den mest synlege)
-    if (window.matchMedia('(max-width: 900px)').matches && 'IntersectionObserver' in window) {
+    // Mobil-spotlight: lys opp tilen nærmast viewport-senter
+    function initSpotlight() {
+      if (!window.matchMedia('(max-width: 900px)').matches) return;
       const tiles = Array.from(document.querySelectorAll('.grid-entry'));
-      const ratios = new Map();
+      if (!tiles.length) return;
 
-      const spotObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => ratios.set(e.target, e.intersectionRatio));
-
+      let ticking = false;
+      function update() {
+        ticking = false;
+        const center = window.innerHeight / 2;
         let active = null;
-        let best = 0.15;
-        ratios.forEach((r, el) => {
-          if (r > best) { best = r; active = el; }
+        let bestDist = Infinity;
+        tiles.forEach(tile => {
+          const r = tile.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > window.innerHeight) return;
+          const tileCenter = r.top + r.height / 2;
+          const dist = Math.abs(tileCenter - center);
+          if (dist < bestDist) { bestDist = dist; active = tile; }
         });
-
         tiles.forEach(t => t.classList.toggle('in-focus', t === active));
-      }, {
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-        rootMargin: '-35% 0px -35% 0px'
-      });
+      }
 
-      tiles.forEach(el => spotObserver.observe(el));
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
     }
+
+    window.addEventListener('load', () => setTimeout(initSpotlight, 100));
 
     function toggleMobileMenu() {
       document.getElementById('hamburger').classList.toggle('open');
