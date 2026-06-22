@@ -178,16 +178,6 @@
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
     }
 
-    .hero-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.5;
-      text-transform: uppercase;
-      color: #fff;
-      margin: 0;
-    }
-
     .hero-btn {
       display: inline-block;
       padding: 0.9rem 2rem;
@@ -215,7 +205,6 @@
 
     @media (max-width: 640px) {
       .hero-headline { font-size: 15px; }
-      .hero-sub { font-size: 13px; }
       .hero-btn { font-size: 13px; }
     }
 
@@ -425,95 +414,6 @@
 
     .nav-links a[aria-current="page"] {
       color: var(--fg);
-    }
-
-    /* ── FEATURED STRIP (3 tiles sentrert på svart) ── */
-    #projects {
-      background: #000;
-    }
-
-    .featured-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(0.5rem, 1.2vw, 1.2rem);
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: clamp(3rem, 8vw, 8rem) clamp(1rem, 3vw, 3rem) 0;
-    }
-
-    .featured-tile {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      cursor: pointer;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-    }
-
-    .featured-tile .media {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
-
-    .featured-tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .featured-tile .grid-entry-content {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      transition: background 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .featured-tile:hover img { transform: scale(1.05); }
-      .featured-tile:hover .grid-entry-content { background: rgba(0, 0, 0, 0.15); }
-    }
-
-    @media (max-width: 768px) {
-      .featured-strip {
-        grid-template-columns: 1fr;
-        padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 3rem) 0;
-      }
-    }
-
-    .see-more-wrap {
-      display: flex;
-      justify-content: center;
-      padding: clamp(2.5rem, 5vw, 5rem) 1rem clamp(3rem, 6vw, 6rem);
-    }
-
-    .see-more-btn {
-      display: inline-block;
-      padding: 1rem 2.6rem;
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      border-radius: 50px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
-    }
-
-    .see-more-btn:hover {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
-      transform: translateY(-1px);
     }
 
     /* ── ABOUT US ── */
@@ -1165,6 +1065,12 @@
       <!-- Stor -->
       <div class="columns grid-entry large-6 fade" onclick="openModal('eiWb0BrE7oc')">
         <div class="media"><img src="/assets/thumbnails/showreel.jpg" alt="Aroyfilm Showreel" loading="lazy" /></div>
+        <div class="grid-entry-content">
+          <div class="grid-entry-text">
+            <h3 class="grid-entry-title">Showreel</h3>
+            <p class="grid-entry-cat">2025</p>
+          </div>
+        </div>
       </div>
 
       <!-- Stor -->
@@ -1228,7 +1134,7 @@
         <div class="grid-entry-content">
           <div class="grid-entry-text">
             <h3 class="grid-entry-title">Vaskeladden</h3>
-            <p class="grid-entry-cat">Brand-film</p>
+            <p class="grid-entry-cat">Brandfilm</p>
           </div>
         </div>
       </div>
