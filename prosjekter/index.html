@@ -712,6 +712,18 @@
       text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
     }
 
+    .brands-cta a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.25em;
+      text-decoration-thickness: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .brands-cta a:hover {
+      opacity: 0.75;
+    }
+
     .logo-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1191,7 +1203,7 @@
         <div class="logo-box"><img src="/assets/logos/dods.png" alt="Døds" loading="lazy" /></div>
         <div class="logo-box"><img src="/assets/logos/autohuset.png" alt="Autohuset Sogn" loading="lazy" /></div>
       </div>
-      <p class="brands-cta">Vil du bli den neste?</p>
+      <p class="brands-cta">Vil du bli neste? <a href="#contact">Ta kontakt!</a></p>
     </div>
   </section>
 
